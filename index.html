@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Pro | المدير</title>  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg,#020617,#0f172a);
+      color: white;
+    }
+
+    header {
+      padding: 30px;
+      text-align: center;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 { font-size: 2.5rem; }
+
+    nav {
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      padding:15px;
+      background:#020617;
+      position: sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    nav a {
+      color:#38bdf8;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav a:hover {
+      color:#22c55e;
+    }
+
+    section {
+      padding:60px 20px;
+      text-align:center;
+    }
+
+    .container {
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .card {
+      background:#1e293b;
+      padding:25px;
+      margin:20px 0;
+      border-radius:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.5);
+      transition:0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .btn {
+      display:inline-block;
+      margin-top:15px;
+      padding:10px 20px;
+      background:#22c55e;
+      color:white;
+      border-radius:8px;
+      text-decoration:none;
+    }
+
+    .stats {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+    }
+
+    .stat-box {
+      background:#020617;
+      padding:20px;
+      border-radius:10px;
+    }
+
+    footer {
+      background:#020617;
+      padding:20px;
+      text-align:center;
+    }
+
+  </style></head>
+<body><header>
+  <h1>📈 Trading Pro</h1>
+  <p>رحلتي في عالم التداول | نتائج | استراتيجيات</p>
+</header><nav>
+  <a href="#about">من أنا</a>
+  <a href="#stats">إحصائيات</a>
+  <a href="#strategy">استراتيجية</a>
+  <a href="#contact">تواصل</a>
+</nav><section id="about">
+  <div class="container">
+    <h2>👤 من أنا</h2>
+    <div class="card">
+      <p>أنا متداول محترف أشارك أفضل استراتيجياتي ونتائجي في الأسواق المالية.</p>
+    </div>
+  </div>
+</section><section id="stats">
+  <div class="container">
+    <h2>📊 إحصائياتي</h2>
+    <div class="stats">
+      <div class="stat-box">
+        <h3 id="win">0%</h3>
+        <p>نسبة النجاح</p>
+      </div>
+      <div class="stat-box">
+        <h3 id="profit">0$</h3>
+        <p>الأرباح</p>
+      </div>
+      <div class="stat-box">
+        <h3 id="trades">0</h3>
+        <p>عدد الصفقات</p>
+      </div>
+    </div>
+  </div>
+</section><section id="strategy">
+  <div class="container">
+    <h2>📉 استراتيجيتي</h2>
+    <div class="card">
+      <p>أعتمد على الترند + تحليل الشموع + توقيت الدخول.</p>
+      <a href="#" class="btn">تعلم أكثر</a>
+    </div>
+  </div>
+</section><section id="contact">
+  <div class="container">
+    <h2>📞 تواصل معي</h2>
+    <div class="card">
+      <p>Telegram | Instagram | Email</p>
+    </div>
+  </div>
+</section><footer>
+  <p>© 2026 Trading Pro - المدير</p>
+</footer><script>
+  // Animation Numbers
+  function animateValue(id, start, end, duration) {
+    let range = end - start;
+    let current = start;
+    let increment = end > start ? 1 : -1;
+    let stepTime = Math.abs(Math.floor(duration / range));
+    let obj = document.getElementById(id);
+
+    let timer = setInterval(function() {
+      current += increment;
+      obj.innerHTML = id === 'profit' ? current + '$' : current + (id==='win' ? '%' : '');
+      if (current == end) clearInterval(timer);
+    }, stepTime);
+  }
+
+  animateValue("win", 0, 85, 2000);
+  animateValue("profit", 0, 5000, 2000);
+  animateValue("trades", 0, 320, 2000);
+</script></body>
+</html>
