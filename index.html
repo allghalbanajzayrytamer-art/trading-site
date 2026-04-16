@@ -2,202 +2,148 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Amine Trading Pro</title>
+<title>Amine Trading Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 <style>
-body {
+body{
   margin:0;
-  font-family: Arial;
-  background:#0b1220;
+  font-family:Arial;
+  background:#0b0f19;
   color:white;
 }
 
-/* NAVBAR */
-nav {
+/* HEADER */
+.header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
+  padding:12px 18px;
   background:#111827;
   position:sticky;
   top:0;
 }
 
-nav h1 {
-  color:#22c55e;
-  font-size:18px;
-}
-
-nav a {
-  color:white;
-  margin:0 10px;
-  text-decoration:none;
-  font-size:14px;
-}
-
-nav a:hover {
-  color:#22c55e;
-}
-
-/* HERO */
-.hero {
-  text-align:center;
-  padding:30px 15px;
-}
-
-.hero h2 {
-  color:#22c55e;
-}
-
-/* BUTTONS */
-.btns button {
-  margin:5px;
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  background:#22c55e;
+.logo{
+  color:#facc15;
   font-weight:bold;
 }
 
-/* GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-  padding:20px;
+/* TICKER LIVE */
+.ticker{
+  display:flex;
+  gap:10px;
+  overflow:auto;
+  padding:10px;
+  background:#0f172a;
 }
 
-.card {
+.coin{
   background:#111827;
-  padding:15px;
-  border-radius:12px;
-  transition:0.3s;
-}
-
-.card:hover {
-  transform:translateY(-5px);
-  background:#1f2937;
+  padding:10px;
+  border-radius:10px;
+  min-width:140px;
+  font-size:14px;
 }
 
 /* CHART */
-.chart {
-  padding:20px;
+#chart{
+  padding:10px;
 }
 
-.section-title {
-  padding-left:20px;
-  color:#22c55e;
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  padding:12px;
+}
+
+.card{
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+}
+
+/* PROFILE */
+.profile{
+  padding:12px;
 }
 
 /* FOOTER */
-footer {
+footer{
   text-align:center;
   padding:15px;
   background:#111827;
-  margin-top:20px;
   color:gray;
 }
-
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h1>Amine Trading Pro 📈</h1>
-  <div>
-    <a href="#charts">Charts</a>
-    <a href="#profile">Profile</a>
-    <a href="#market">Market</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <h2>Welcome Amine 👑</h2>
-  <p>Professional Trading Dashboard</p>
-
-  <div class="btns">
-    <button onclick="showChart('BINANCE:BTCUSDT')">BTC</button>
-    <button onclick="showChart('BINANCE:ETHUSDT')">ETH</button>
-    <button onclick="showChart('OANDA:XAUUSD')">GOLD</button>
-  </div>
-</section>
-
-<h3 class="section-title" id="charts">📊 Live Chart</h3>
-<div class="chart">
-  <div id="tv_chart"></div>
+<div class="header">
+  <div class="logo">Amine Trading Platform 🚀</div>
+  <div>LIVE MARKET</div>
 </div>
 
+<div class="ticker">
+  <div class="coin" id="btc">BTC: loading...</div>
+  <div class="coin" id="eth">ETH: loading...</div>
+  <div class="coin" id="bnb">BNB: loading...</div>
+</div>
+
+<div id="chart"></div>
+
 <script>
-function loadChart(symbol){
-  new TradingView.widget({
-    "container_id":"tv_chart",
-    "width":"100%",
-    "height":450,
-    "symbol":symbol,
-    "interval":"15",
-    "theme":"dark",
-    "style":"1",
-    "locale":"en"
-  });
-}
-
-function showChart(symbol){
-  document.getElementById("tv_chart").innerHTML="";
-  loadChart(symbol);
-}
-
-loadChart("BINANCE:BTCUSDT");
+new TradingView.widget({
+  "container_id":"chart",
+  "width":"100%",
+  "height":500,
+  "symbol":"BINANCE:BTCUSDT",
+  "interval":"15",
+  "theme":"dark",
+  "style":"1"
+});
 </script>
 
-<h3 class="section-title" id="market">📈 Market Overview</h3>
-<section class="grid">
-  <div class="card">
-    <h3>Bitcoin</h3>
-    <p>BTC/USDT Live analysis</p>
-  </div>
+<h3 style="padding-left:12px;color:#facc15;">Market Overview</h3>
 
-  <div class="card">
-    <h3>Ethereum</h3>
-    <p>ETH market trend</p>
-  </div>
+<div class="grid">
+  <div class="card">Bitcoin Analysis</div>
+  <div class="card">Ethereum Trend</div>
+  <div class="card">Gold Safe Asset</div>
+  <div class="card">Forex Market</div>
+</div>
 
-  <div class="card">
-    <h3>Gold</h3>
-    <p>XAU/USD safe asset</p>
-  </div>
-
-  <div class="card">
-    <h3>Forex</h3>
-    <p>Major currency pairs</p>
-  </div>
-</section>
-
-<h3 class="section-title" id="profile">👑 Amine Profile</h3>
-<section class="grid">
-  <div class="card">
-    <h3>About Amine</h3>
-    <p>Owner of Amine Trading Pro</p>
-  </div>
-
-  <div class="card">
-    <h3>Facebook</h3>
-    <p>Amine ov</p>
-  </div>
-
-  <div class="card">
-    <h3>Contact</h3>
-    <p>+213 663 190 202</p>
-  </div>
-</section>
+<div class="profile">
+  <h3>👑 Amine Profile</h3>
+  <p>Facebook: Amine ov</p>
+  <p>Phone: +213 663 190 202</p>
+</div>
 
 <footer>
-  © 2026 Amine Trading Pro | Built with 💚
+© Amine Trading Platform
 </footer>
+
+<script>
+async function loadPrices(){
+  const res = await fetch("https://api.binance.com/api/v3/ticker/price");
+  const data = await res.json();
+
+  function find(symbol){
+    return data.find(x => x.symbol === symbol)?.price;
+  }
+
+  document.getElementById("btc").innerText = "BTC: $" + find("BTCUSDT");
+  document.getElementById("eth").innerText = "ETH: $" + find("ETHUSDT");
+  document.getElementById("bnb").innerText = "BNB: $" + find("BNBUSDT");
+}
+
+loadPrices();
+setInterval(loadPrices, 5000);
+</script>
 
 </body>
 </html>
