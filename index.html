@@ -1,172 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Amine Trading Pro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Amine Trading Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --text: #ffffff;
-      --green: #22c55e;
-    }
+<script src="https://s3.tradingview.com/tv.js"></script>
 
-    body.light {
-      --bg: #f1f5f9;
-      --card: #ffffff;
-      --text: #0f172a;
-    }
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#0b1220;
+  color:white;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: 0.3s;
-    }
+/* NAVBAR */
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:#111827;
+  position:sticky;
+  top:0;
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 25px;
-      background: var(--card);
-      position: sticky;
-      top: 0;
-    }
+nav h1 {
+  color:#22c55e;
+  font-size:18px;
+}
 
-    header h1 {
-      color: var(--green);
-      font-size: 20px;
-    }
+nav a {
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+  font-size:14px;
+}
 
-    button {
-      padding: 8px 12px;
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-      background: var(--green);
-      font-weight: bold;
-    }
+nav a:hover {
+  color:#22c55e;
+}
 
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-    }
+/* HERO */
+.hero {
+  text-align:center;
+  padding:30px 15px;
+}
 
-    .hero h2 {
-      color: var(--green);
-      font-size: 32px;
-    }
+.hero h2 {
+  color:#22c55e;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
+/* BUTTONS */
+.btns button {
+  margin:5px;
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#22c55e;
+  font-weight:bold;
+}
 
-    .card {
-      background: var(--card);
-      padding: 15px;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  padding:20px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.card {
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+  transition:0.3s;
+}
 
-    .chart {
-      padding: 20px;
-    }
+.card:hover {
+  transform:translateY(-5px);
+  background:#1f2937;
+}
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: var(--card);
-      margin-top: 20px;
-      color: gray;
-    }
-  </style>
+/* CHART */
+.chart {
+  padding:20px;
+}
+
+.section-title {
+  padding-left:20px;
+  color:#22c55e;
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:15px;
+  background:#111827;
+  margin-top:20px;
+  color:gray;
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
+<nav>
   <h1>Amine Trading Pro 📈</h1>
-  <button onclick="toggleMode()">🌙/☀️ Mode</button>
-</header>
+  <div>
+    <a href="#charts">Charts</a>
+    <a href="#profile">Profile</a>
+    <a href="#market">Market</a>
+  </div>
+</nav>
 
 <section class="hero">
   <h2>Welcome Amine 👑</h2>
   <p>Professional Trading Dashboard</p>
-</section>
 
-<section class="chart">
-  <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-    <div id="tradingview_chart"></div>
+  <div class="btns">
+    <button onclick="showChart('BINANCE:BTCUSDT')">BTC</button>
+    <button onclick="showChart('BINANCE:ETHUSDT')">ETH</button>
+    <button onclick="showChart('OANDA:XAUUSD')">GOLD</button>
   </div>
-
-  <script src="https://s3.tradingview.com/tv.js"></script>
-  <script>
-    new TradingView.widget({
-      "container_id": "tradingview_chart",
-      "width": "100%",
-      "height": 500,
-      "symbol": "BINANCE:BTCUSDT",
-      "interval": "15",
-      "theme": "dark",
-      "style": "1",
-      "locale": "en"
-    });
-  </script>
-  <!-- TradingView Widget END -->
 </section>
 
+<h3 class="section-title" id="charts">📊 Live Chart</h3>
+<div class="chart">
+  <div id="tv_chart"></div>
+</div>
+
+<script>
+function loadChart(symbol){
+  new TradingView.widget({
+    "container_id":"tv_chart",
+    "width":"100%",
+    "height":450,
+    "symbol":symbol,
+    "interval":"15",
+    "theme":"dark",
+    "style":"1",
+    "locale":"en"
+  });
+}
+
+function showChart(symbol){
+  document.getElementById("tv_chart").innerHTML="";
+  loadChart(symbol);
+}
+
+loadChart("BINANCE:BTCUSDT");
+</script>
+
+<h3 class="section-title" id="market">📈 Market Overview</h3>
 <section class="grid">
   <div class="card">
-    <h3>📊 Market</h3>
-    <p>Live Bitcoin chart and analysis.</p>
+    <h3>Bitcoin</h3>
+    <p>BTC/USDT Live analysis</p>
   </div>
 
   <div class="card">
-    <h3>🧠 Strategy</h3>
-    <p>Learn smart trading decisions.</p>
+    <h3>Ethereum</h3>
+    <p>ETH market trend</p>
   </div>
 
   <div class="card">
-    <h3>💰 Risk</h3>
-    <p>Protect your capital like a pro.</p>
+    <h3>Gold</h3>
+    <p>XAU/USD safe asset</p>
   </div>
 
   <div class="card">
-    <h3>👑 Amine Profile</h3>
-    <p>Owner of this trading dashboard.</p>
+    <h3>Forex</h3>
+    <p>Major currency pairs</p>
+  </div>
+</section>
+
+<h3 class="section-title" id="profile">👑 Amine Profile</h3>
+<section class="grid">
+  <div class="card">
+    <h3>About Amine</h3>
+    <p>Owner of Amine Trading Pro</p>
+  </div>
+
+  <div class="card">
+    <h3>Facebook</h3>
+    <p>Amine ov</p>
+  </div>
+
+  <div class="card">
+    <h3>Contact</h3>
+    <p>+213 663 190 202</p>
   </div>
 </section>
 
 <footer>
-  © 2026 Amine Trading Pro
+  © 2026 Amine Trading Pro | Built with 💚
 </footer>
-
-<script>
-function toggleMode() {
-  document.body.classList.toggle("light");
-}
-</script>
 
 </body>
 </html>
-<div class="card">
-  <h3>👑 Amine Profile</h3>
-  <p>Owner of Amine Trading Pro</p>
-  <p>📘 Facebook: <b>Amine ov</b></p>
-  <p>📞 Contact: <b>+213 663 190 202</b></p>
-  <button onclick="window.location.href='https://www.facebook.com/'">
-    Visit Facebook
-  </button>
-</div>
