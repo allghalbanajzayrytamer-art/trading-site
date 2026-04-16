@@ -2,118 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Amine Trading Hub</title>
+  <title>Amine Trading Pro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #ffffff;
+      --green: #22c55e;
+    }
+
+    body.light {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
     }
 
     header {
-      background: #111827;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: var(--card);
+      position: sticky;
+      top: 0;
+    }
+
+    header h1 {
+      color: var(--green);
+      font-size: 20px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      background: var(--green);
       font-weight: bold;
-      color: #22c55e;
     }
 
     .hero {
-      padding: 60px 20px;
       text-align: center;
+      padding: 40px 20px;
     }
 
-    .hero h1 {
-      font-size: 40px;
-      color: #22c55e;
-    }
-
-    .hero p {
-      color: #cbd5e1;
-      font-size: 18px;
-    }
-
-    .btn {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #22c55e;
-      border: none;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 8px;
+    .hero h2 {
+      color: var(--green);
+      font-size: 32px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
+      gap: 15px;
+      padding: 20px;
     }
 
     .card {
-      background: #1e293b;
-      padding: 20px;
+      background: var(--card);
+      padding: 15px;
       border-radius: 12px;
       transition: 0.3s;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      background: #334155;
+    }
+
+    .chart {
+      padding: 20px;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: #111827;
-      color: #94a3b8;
-      margin-top: 40px;
+      padding: 15px;
+      background: var(--card);
+      margin-top: 20px;
+      color: gray;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    Amine Trading Hub 📈
-  </header>
+<header>
+  <h1>Amine Trading Pro 📈</h1>
+  <button onclick="toggleMode()">🌙/☀️ Mode</button>
+</header>
 
-  <section class="hero">
-    <h1>Welcome Amine 👑</h1>
-    <p>Learn trading, strategies, and market analysis like a pro</p>
-    <button class="btn" onclick="alert('Start Learning Trading!')">Get Started</button>
-  </section>
+<section class="hero">
+  <h2>Welcome Amine 👑</h2>
+  <p>Professional Trading Dashboard</p>
+</section>
 
-  <section class="grid">
-    <div class="card">
-      <h3>📊 Market Basics</h3>
-      <p>Learn how forex and crypto markets work.</p>
-    </div>
+<section class="chart">
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div id="tradingview_chart"></div>
+  </div>
 
-    <div class="card">
-      <h3>📈 Strategies</h3>
-      <p>Simple trading strategies for beginners and advanced users.</p>
-    </div>
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script>
+    new TradingView.widget({
+      "container_id": "tradingview_chart",
+      "width": "100%",
+      "height": 500,
+      "symbol": "BINANCE:BTCUSDT",
+      "interval": "15",
+      "theme": "dark",
+      "style": "1",
+      "locale": "en"
+    });
+  </script>
+  <!-- TradingView Widget END -->
+</section>
 
-    <div class="card">
-      <h3>💰 Risk Management</h3>
-      <p>How to protect your capital and avoid big losses.</p>
-    </div>
+<section class="grid">
+  <div class="card">
+    <h3>📊 Market</h3>
+    <p>Live Bitcoin chart and analysis.</p>
+  </div>
 
-    <div class="card">
-      <h3>🧠 Psychology</h3>
-      <p>Control emotions and trade like a professional.</p>
-    </div>
-  </section>
+  <div class="card">
+    <h3>🧠 Strategy</h3>
+    <p>Learn smart trading decisions.</p>
+  </div>
 
-  <footer>
-    © 2026 Amine Trading Hub | Built with 💚 by Amine
-  </footer>
+  <div class="card">
+    <h3>💰 Risk</h3>
+    <p>Protect your capital like a pro.</p>
+  </div>
+
+  <div class="card">
+    <h3>👑 Amine Profile</h3>
+    <p>Owner of this trading dashboard.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Amine Trading Pro
+</footer>
+
+<script>
+function toggleMode() {
+  document.body.classList.toggle("light");
+}
+</script>
 
 </body>
 </html>
+<div class="card">
+  <h3>👑 Amine Profile</h3>
+  <p>Owner of Amine Trading Pro</p>
+  <p>📘 Facebook: <b>Amine ov</b></p>
+  <p>📞 Contact: <b>+213 663 190 202</b></p>
+  <button onclick="window.location.href='https://www.facebook.com/'">
+    Visit Facebook
+  </button>
+</div>
