@@ -8,28 +8,29 @@
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 <style>
-:root {
+:root{
   --primary:#facc15;
-  --bg-dark:#0b0f19;
-  --card-bg:#111827;
-  --text-gray:#9ca3af;
-  --success:#22c55e;
+  --bg:#0b0f19;
+  --card:#111827;
+  --text:#9ca3af;
+  --green:#22c55e;
 }
 
 body{
   margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:var(--bg-dark);
-  color:#fff;
+  font-family:sans-serif;
+  background:var(--bg);
+  color:white;
 }
 
 /* HEADER */
 .header{
   display:flex;
   justify-content:space-between;
-  padding:15px 20px;
-  background:var(--card-bg);
-  border-bottom:1px solid #1f2937;
+  padding:15px;
+  background:var(--card);
+  position:sticky;
+  top:0;
 }
 
 /* TICKER */
@@ -40,51 +41,60 @@ body{
   overflow:auto;
 }
 .coin{
-  background:var(--card-bg);
-  padding:10px 15px;
+  background:var(--card);
+  padding:10px;
   border-radius:10px;
   min-width:120px;
-  text-align:center;
 }
 
 /* CHART */
-#chart{height:450px;}
+#chart{
+  height:450px;
+}
 
 /* AD */
-.ad-container{padding:20px;}
-.ad-banner{
+.ad{
+  padding:20px;
+}
+.ad a{
   display:block;
   text-align:center;
+  padding:25px;
+  border-radius:15px;
   background:linear-gradient(135deg,#1e2329,#474d57);
   border:1px solid var(--primary);
-  border-radius:15px;
-  padding:25px;
   text-decoration:none;
-  transition:.3s;
+  color:white;
 }
-.ad-banner:hover{transform:scale(1.02);}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:15px;
-  padding:20px;
-}
-.card{
-  background:var(--card-bg);
-  padding:20px;
-  border-radius:15px;
-}
-
-/* BUTTON */
-.cta{
+.btn{
   background:var(--primary);
-  color:#000;
-  padding:12px 30px;
+  color:black;
+  padding:10px 25px;
   border-radius:10px;
   display:inline-block;
   font-weight:bold;
+}
+
+/* BLOG */
+.blog{
+  padding:20px;
+}
+.article{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+.article h2{
+  color:var(--primary);
+}
+
+/* PROFILE */
+.profile{
+  padding:20px;
+  background:#1f2937;
+  margin:20px;
+  border-radius:15px;
 }
 
 /* WHATSAPP */
@@ -93,9 +103,9 @@ body{
   bottom:20px;
   left:20px;
   background:#25d366;
-  padding:12px 20px;
+  padding:12px 18px;
   border-radius:50px;
-  color:#fff;
+  color:white;
   text-decoration:none;
 }
 
@@ -104,7 +114,7 @@ footer{
   text-align:center;
   padding:20px;
   font-size:12px;
-  color:var(--text-gray);
+  color:var(--text);
 }
 </style>
 </head>
@@ -113,7 +123,7 @@ footer{
 
 <div class="header">
   <div style="color:var(--primary)">Amine Trading 🚀</div>
-  <div style="color:var(--success)">● LIVE</div>
+  <div style="color:var(--green)">● LIVE</div>
 </div>
 
 <div class="ticker">
@@ -124,55 +134,68 @@ footer{
 
 <div id="chart"></div>
 
-<!-- 🔥 BINANCE AFFILIATE -->
-<div class="ad-container">
-  <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank" class="ad-banner">
+<!-- 🔥 AD BINANCE -->
+<div class="ad">
+<a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
 
-    <h2 style="color:var(--primary)">🚀 ابدأ التداول الآن</h2>
+<h2 style="color:var(--primary)">🚀 تعلم التداول وابدأ الآن</h2>
 
-    <p>
-      🎁 سجل واحصل على:
-      <br>✔️ خصم رسوم
-      <br>✔️ بونيس حتى 100$
-    </p>
+<p>
+✔️ بونيس حتى 100$<br>
+✔️ خصم رسوم التداول<br>
+✔️ منصة عالمية
+</p>
 
-    <div style="background:#16a34a;padding:10px;border-radius:8px;margin:10px;">
-      ⚡ أكثر من 120 مليون مستخدم
-    </div>
+<div class="btn">🔥 سجل الآن</div>
 
-    <div class="cta">🔥 سجل الآن</div>
+<p style="font-size:12px;opacity:.7;">عرض محدود</p>
 
-    <p style="font-size:12px;opacity:.7;">⏳ عرض محدود</p>
-
-  </a>
+</a>
 </div>
 
-<!-- HOW TO START -->
-<div class="grid">
-  <div class="card">
-    <h4>1. إنشاء حساب</h4>
-    <p style="color:var(--text-gray)">سجل بسهولة في دقيقة</p>
-  </div>
-  <div class="card">
-    <h4>2. إيداع</h4>
-    <p style="color:var(--text-gray)">أضف رصيدك</p>
-  </div>
-  <div class="card">
-    <h4>3. تداول</h4>
-    <p style="color:var(--text-gray)">ابدأ تحقيق الأرباح</p>
-  </div>
+<!-- 📚 ARTICLES -->
+<div class="blog">
+
+<h2 style="color:var(--primary)">📚 مقالات تعليم التداول</h2>
+
+<div class="article">
+<h2>كيف تبدأ التداول من الصفر</h2>
+<p>
+التداول هو مهارة لازم تتعلمها قبل ما تدخل بالفلوس.  
+أول خطوة هي اختيار منصة قوية كيما Binance، ومن بعد تبدأ تتعلم التحليل.
+</p>
+<a class="btn" href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE">ابدأ الآن</a>
 </div>
 
-<!-- PROFILE -->
-<div style="padding:20px;">
-  <h3 style="color:var(--primary)">👑 Amine</h3>
-  <p>📞 0663190202</p>
+<div class="article">
+<h2>أخطاء المبتدئين في التداول</h2>
+<p>
+أكبر خطأ هو الدخول بدون خطة. لازم دايماً تحدد راس مالك وما تدخلش بعشوائية.
+</p>
+<a class="btn" href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE">تعلم أكثر</a>
 </div>
 
-<a href="https://wa.me/213663190202" class="whatsapp">💬 تواصل</a>
+<div class="article">
+<h2>كيف تتحكم في الخسارة</h2>
+<p>
+استعمال Stop Loss مهم بزاف باش ما تخسرش كامل رأس مالك في صفقة وحدة.
+</p>
+<a class="btn" href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE">ابدأ التداول</a>
+</div>
+
+</div>
+
+<!-- 👑 PROFILE -->
+<div class="profile">
+<h3 style="color:var(--primary)">👑 Amine Profile</h3>
+<p>📞 0663 19 02 02</p>
+<p>📱 Facebook: Amine ov</p>
+</div>
+
+<a class="whatsapp" href="https://wa.me/213663190202">💬 WhatsApp</a>
 
 <footer>
-© 2024 Amine Trading  
+© 2026 Amine Trading Platform  
 <br>
 ⚠️ التداول فيه مخاطر  
 <br>
@@ -189,13 +212,13 @@ new TradingView.widget({
 });
 
 async function load(){
-  const r=await fetch("https://api.binance.com/api/v3/ticker/price");
-  const d=await r.json();
-  const f=s=>d.find(x=>x.symbol===s)?.price;
+  const r = await fetch("https://api.binance.com/api/v3/ticker/price");
+  const d = await r.json();
+  const f = s => d.find(x=>x.symbol===s)?.price;
 
-  btc.innerText="$"+Number(f("BTCUSDT")).toFixed(2);
-  eth.innerText="$"+Number(f("ETHUSDT")).toFixed(2);
-  bnb.innerText="$"+Number(f("BNBUSDT")).toFixed(2);
+  btc.innerText = "$"+Number(f("BTCUSDT")).toFixed(2);
+  eth.innerText = "$"+Number(f("ETHUSDT")).toFixed(2);
+  bnb.innerText = "$"+Number(f("BNBUSDT")).toFixed(2);
 }
 load();
 setInterval(load,8000);
