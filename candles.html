@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شرح الشموع اليابانية - Amine Trading</title>
+    <title>أنواع الشموع اليابانية - Amine Trading</title>
     <style>
-        body { font-family: sans-serif; background: #0b0f19; color: white; padding: 20px; line-height: 1.8; }
-        .container { max-width: 700px; margin: auto; background: #111827; padding: 25px; border-radius: 15px; border: 1px solid #facc15; }
-        h1 { color: #facc15; text-align: center; }
-        .box { background: #1e293b; padding: 15px; border-radius: 10px; margin: 15px 0; border-right: 5px solid #22c55e; }
-        .red-box { border-right-color: #ef4444; }
-        .back-btn { display: inline-block; margin-top: 20px; color: #facc15; text-decoration: none; font-weight: bold; border: 1px solid #facc15; padding: 10px 20px; border-radius: 8px; }
-        .back-btn:hover { background: #facc15; color: black; }
+        :root{ --primary:#facc15; --bg:#0b0f19; --card:#111827; --text:#9ca3af; --green:#22c55e; --red:#ef4444; }
+        body{ background:var(--bg); color:white; font-family:sans-serif; padding:20px; line-height:1.6; margin:0; }
+        .container{ max-width:600px; margin:auto; }
+        h1{ color:var(--primary); text-align:center; border-bottom:2px solid var(--primary); padding-bottom:10px; }
+        .candle-box{ background:var(--card); padding:15px; border-radius:12px; margin-bottom:20px; border:1px solid #1f2937; }
+        .candle-name{ color:var(--primary); font-size:18px; font-weight:bold; display:block; margin-bottom:10px; }
+        .back-btn{ display:inline-block; margin-bottom:20px; color:var(--primary); text-decoration:none; font-weight:bold; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🕯️ تعلم قراءة الشموع اليابانية</h1>
-        <p>الشموع اليابانية هي لغة السوق اللي تخليك تعرف واش راهو يصرى بين البائعين والمشترين.</p>
+        <a href="index.html" class="back-btn">← العودة للرئيسية</a>
+        <h1>🕯️ دليل الشموع اليابانية</h1>
         
-        <div class="box">
-            <h3>🟢 الشمعة الخضراء (الصاعدة)</h3>
-            <p>تعني أن السعر طلع من وقت ما فتحت الشمعة حتى غلقت. هنا المشترين راهم بقوة.</p>
+        <div class="candle-box">
+            <span class="candle-name">1. شمعة المطرقة (Hammer)</span>
+            <p>تجي في نهاية مسار هابط، جسمها صغير وذيلها طويل لتحت. معناها السعر راه حاب يطلع (إشارة شراء).</p>
         </div>
 
-        <div class="box red-box">
-            <h3>🔴 الشمعة الحمراء (الهابطة)</h3>
-            <p>تعني أن السعر هبط. البائعين راهم مسيطرين وحابين يهبطو السعر أكثر.</p>
+        <div class="candle-box">
+            <span class="candle-name">2. شمعة الشهاب (Shooting Star)</span>
+            <p>عكس المطرقة، تجي في نهاية مسار صاعد وذيلها طويل لفوڨ. معناها السعر راه حاب يهبط (إشارة بيع).</p>
         </div>
 
-        <h3>💡 معلومة مهمة:</h3>
-        <p>الخطوط الرقيقة اللي تخرج من الشمعة (الذيول) تورينا أعلى سعر وأقل سعر وصل ليه السوق في هذاك الوقت.</p>
-
-        <a href="index.html" class="back-btn">⬅️ العودة للموقع الرئيسي</a>
+        <div class="candle-box">
+            <span class="candle-name">3. شمعة الدوجي (Doji)</span>
+            <p>شمعة تشبه لعلامة (+)، تعني بلي كاين حيرة بين البائعين والمشترين، وغالباً يجي موراها تغيير في الاتجاه.</p>
+        </div>
     </div>
 </body>
 </html>
