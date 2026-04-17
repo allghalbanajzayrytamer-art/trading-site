@@ -1,350 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradeX Pro Ultimate | Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root {
-            --bg: #0b0f1a;
-            --card-bg: #111827;
-            --accent: #00ff99;
-            --danger: #ff4d4d;
-            --text-muted: #cbd5e1;
-        }
+<meta charset="UTF-8">
+<title>Amine Trading Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: #fff;
-            overflow-x: hidden;
-        }
+<script src="https://s3.tradingview.com/tv.js"></script>
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 220px;
-            height: 100%;
-            background: #0f172a;
-            padding: 20px;
-            border-right: 1px solid #1f2937;
-        }
+<style>
+:root{
+  --primary:#facc15;
+  --bg:#0b0f19;
+  --card:#111827;
+  --text:#9ca3af;
+  --green:#22c55e;
+  --red:#ef4444;
+}
 
-        .logo {
-            font-weight: 800;
-            color: var(--accent);
-            font-size: 22px;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-        }
+body{
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:var(--bg);
+  color:white;
+}
 
-        .nav-item {
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: 0.3s;
-        }
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  padding:15px 20px;
+  background:var(--card);
+  position:sticky;
+  top:0;
+  z-index: 1000;
+  border-bottom: 1px solid #1f2937;
+}
 
-        .nav-item:hover, .nav-item.active {
-            background: #1e293b;
-            color: white;
-        }
+/* TICKER */
+.ticker{
+  display:flex;
+  gap:10px;
+  padding:15px;
+  overflow:auto;
+  scrollbar-width: none;
+}
+.coin{
+  background:var(--card);
+  padding:12px;
+  border-radius:12px;
+  min-width:130px;
+  border: 1px solid #1f2937;
+}
+.coin span { color: var(--green); font-weight: bold; }
 
-        /* Main Content */
-        .main {
-            margin-left: 260px;
-            padding: 30px;
-        }
+/* CHART */
+#chart{
+  height:400px;
+  margin: 10px 0;
+}
 
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
+/* AD SECTION */
+.ad{ padding:20px; }
+.ad a{
+  display:block;
+  text-align:center;
+  padding:30px;
+  border-radius:20px;
+  background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%);
+  border:2px solid var(--primary);
+  text-decoration:none;
+  color:white;
+  transition: 0.3s;
+}
+.ad a:hover { transform: scale(1.02); }
 
-        /* Cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+/* NEW EDUCATION SECTION */
+.edu-section { padding: 20px; }
+.edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+.edu-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #1f2937;
+    transition: 0.3s;
+    text-decoration: none;
+    color: white;
+}
+.edu-card:hover { border-color: var(--primary); background: #1c2533; }
+.edu-card i { font-size: 30px; display: block; margin-bottom: 10px; }
+.edu-card h3 { font-size: 16px; color: var(--primary); margin: 0; }
 
-        .card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid #1f2937;
-            transition: transform 0.2s;
-        }
+/* BLOG & CONTACT */
+.blog, .contact{ padding:20px; }
+.article, .box{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:15px;
+  border: 1px solid #1f2937;
+}
+.article h2, .box h3 { color:var(--primary); margin-top: 0; }
 
-        .card:hover { transform: translateY(-5px); }
+.btn{
+  display:inline-block;
+  padding:12px 25px;
+  border-radius:10px;
+  font-weight:bold;
+  text-decoration:none;
+  text-align: center;
+}
+.fb{ background:#1877f2; color:white; width: 80%; }
+.wa{ background:#25d366; color:white; width: 80%; }
 
-        .green { color: var(--accent); }
-        .red { color: var(--danger); }
+/* WHATSAPP FLOAT */
+.float-wa{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#25d366;
+  padding:15px 20px;
+  border-radius:50px;
+  color:white;
+  text-decoration:none;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+}
 
-        /* Chart */
-        .chart-box {
-            margin-top: 25px;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid #1f2937;
-        }
-
-        /* Trade Section */
-        .trade-box {
-            margin-top: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .trade-panel, .order-book {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid #1f2937;
-        }
-
-        button {
-            width: 100%;
-            background: var(--accent);
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            margin-top: 10px;
-            transition: 0.2s;
-        }
-
-        button:active { transform: scale(0.98); }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #374151;
-            background: #0b0f1a;
-            color: white;
-            box-sizing: border-box;
-        }
-
-        /* Modal */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.85); z-index: 100;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .modal-box {
-            background: var(--card-bg); padding: 30px; border-radius: 16px; width: 320px; text-align: center;
-        }
-
-        /* Order List */
-        #orders div {
-            padding: 10px;
-            border-bottom: 1px solid #1f2937;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .toast {
-            position: fixed; bottom: 20px; right: 20px;
-            padding: 15px 25px; border-radius: 8px;
-            font-weight: 600; display: none; z-index: 200;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-    </style>
+footer{
+  text-align:center;
+  padding:40px 20px;
+  font-size:12px;
+  color:var(--text);
+  background: #05070a;
+}
+</style>
 </head>
+
 <body>
 
-<div class="toast" id="toast"></div>
-
-<div class="modal" id="loginModal">
-    <div class="modal-box">
-        <h2 style="color: var(--accent)">Welcome Back</h2>
-        <p style="color: var(--text-muted)">Enter your name to start trading</p>
-        <input id="user" placeholder="Username">
-        <button onclick="login()">Access Terminal</button>
-    </div>
+<div class="header">
+  <div style="color:var(--primary); font-size: 20px; font-weight: bold;">Amine Trading 🚀</div>
+  <div style="color:var(--green); font-size: 14px;">● بالسوق مباشر</div>
 </div>
 
-<div class="sidebar">
-    <div class="logo">TRADEX PRO</div>
-    <div class="nav-item active">📊 Dashboard</div>
-    <div class="nav-item">💰 Wallet</div>
-    <div class="nav-item">📈 Markets</div>
-    <div class="nav-item">⚙ Settings</div>
+<div class="ticker">
+  <div class="coin">BTC <span id="btc">...</span></div>
+  <div class="coin">ETH <span id="eth">...</span></div>
+  <div class="coin">BNB <span id="bnb">...</span></div>
 </div>
 
-<div class="main">
-    <div class="topbar">
-        <h2>Live Terminal <span id="live-dot" style="color:var(--accent); font-size: 12px;">● LIVE</span></h2>
-        <div id="username-display" style="font-weight: 600; color: var(--text-muted)"></div>
-    </div>
+<div id="chart"></div>
 
-    <div class="card-grid">
-        <div class="card">BTC/USDT<br><b class="green" id="btc">Fetching...</b></div>
-        <div class="card">ETH/USDT<br><b class="green" id="eth">Fetching...</b></div>
-        <div class="card">24h Volume<br><b>$1.2B</b></div>
-        <div class="card">Available Balance<br><b id="balance" class="green">$0.00</b></div>
-    </div>
-
-    <div class="chart-box">
-        <h3>Market Activity (BTC/USD)</h3>
-        <canvas id="chart" height="100"></canvas>
-    </div>
-
-    <div class="trade-box">
-        <div class="trade-panel">
-            <h3>Quick Trade</h3>
-            <label style="font-size: 12px; color: var(--text-muted)">Order Amount (USD)</label>
-            <input type="number" id="amount" placeholder="0.00">
-            <button onclick="trade('BUY')">BUY / LONG</button>
-            <button onclick="trade('SELL')" style="background:var(--danger); color:white;">SELL / SHORT</button>
-        </div>
-        <div class="order-book">
-            <h3>Recent Orders</h3>
-            <div id="orders"></div>
-        </div>
-    </div>
+<div class="edu-section">
+    <h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">🎓 تعلم الأساسيات</h2>
+    <div class="edu-grid">
+        <a href="candles.html" class="edu-card">
+            <i>🕯️</i>
+            <h3>الشموع اليابانية</h3>
+        </a>
+        <a href="p2p-guide.html" class="edu-card">
+            <i>💳</i>
+            <h3>شراء USDT</h3>
+        </a>
+        <a href="risk-management.html" class="edu-card">
+            <i>🛡️</i>
+            <h3>إدارة المخاطر</h3>
+        </a>
+    </div>
 </div>
+
+<div class="ad">
+<a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
+<h2 style="color:var(--primary)">🚀 ابدأ التداول في Binance</h2>
+<p style="color: #9ca3af;">سجل الآن واحصل على بونيس ترحيبي خاص عبر رابطنا</p>
+<div style="background:var(--primary); color:black; padding:10px; border-radius:8px; display:inline-block; font-weight:bold; margin-top:10px;">سجل الآن مجاناً</div>
+</a>
+</div>
+
+<div class="blog">
+<h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">📚 مقالات تهمك</h2>
+<div class="article">
+<h2>أهم أخطاء المبتدئين</h2>
+<p>التداول بدون خطة هو أسرع طريق لخسارة رأس مالك. تعلم كيف تضع استراتيجية...</p>
+</div>
+</div>
+
+<div class="contact">
+<h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">📞 تواصل مباشر</h2>
+<div class="box" style="text-align:center;">
+<h3>📘 صفحة الفيسبوك</h3>
+<a class="btn fb" href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">متابعة التحديثات</a>
+</div>
+<div class="box" style="text-align:center;">
+<h3>💬 استفسار خاص</h3>
+<a class="btn wa" href="https://wa.me/213663190202" target="_blank">راسلني واتساب</a>
+</div>
+</div>
+
+<a class="float-wa" href="https://wa.me/213663190202">💬 تواصل معي</a>
+
+<footer>
+© 2026 Amine Trading Platform<br>
+⚠️ تحذير: التداول ينطوي على مخاطر عالية لخسارة الأموال.<br>
+جميع الحقوق محفوظة.
+</footer>
 
 <script>
-    let balance = parseFloat(localStorage.getItem('balance') || 10000);
-    let btcPrice = 0;
+new TradingView.widget({
+  container_id:"chart",
+  width:"100%",
+  height:400,
+  symbol:"BINANCE:BTCUSDT",
+  interval: "60",
+  theme:"dark",
+  style: "1",
+  locale: "ar",
+  toolbar_bg: "#f1f3f6",
+  enable_publishing: false,
+  hide_side_toolbar: false,
+  allow_symbol_change: true,
+  details: true,
+  hotlist: true,
+  calendar: true
+});
 
-    // Login logic
-    function login() {
-        let u = document.getElementById('user').value;
-        if (!u) return;
-        localStorage.setItem('user', u);
-        document.getElementById('loginModal').style.display = 'none';
-        init();
-    }
+async function load(){
+  try {
+    const r=await fetch("https://api.binance.com/api/v3/ticker/price");
+    const d=await r.json();
+    const f=s=>d.find(x=>x.symbol===s)?.price;
 
-    function init() {
-        let user = localStorage.getItem('user');
-        if (!user) {
-            document.getElementById('loginModal').style.display = 'flex';
-        } else {
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('username-display').innerText = "Trader: " + user;
-            updateBalanceUI();
-            startLiveUpdates();
-        }
-    }
-
-    function updateBalanceUI() {
-        document.getElementById('balance').innerText = "$" + balance.toLocaleString(undefined, {minimumFractionDigits: 2});
-        localStorage.setItem('balance', balance);
-    }
-
-    // API Integration
-    async function fetchPrices() {
-        try {
-            let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
-            let data = await res.json();
-            btcPrice = data.bitcoin.usd;
-            
-            document.getElementById('btc').innerText = "$" + btcPrice.toLocaleString();
-            document.getElementById('eth').innerText = "$" + data.ethereum.usd.toLocaleString();
-            
-            return btcPrice;
-        } catch (e) {
-            console.error("Price fetch error");
-        }
-    }
-
-    // Chart Logic
-    const ctx = document.getElementById('chart').getContext('2d');
-    let chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: Array(10).fill(''),
-            datasets: [{
-                label: 'BTC Price',
-                data: Array(10).fill(null),
-                borderColor: '#00ff99',
-                backgroundColor: 'rgba(0, 255, 153, 0.1)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { grid: { color: '#1f2937' }, ticks: { color: '#94a3b8' } },
-                x: { display: false }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-
-    async function startLiveUpdates() {
-        setInterval(async () => {
-            let price = await fetchPrices();
-            if (price) {
-                chart.data.datasets[0].data.push(price);
-                chart.data.datasets[0].data.shift();
-                chart.data.labels.push(new Date().toLocaleTimeString());
-                chart.data.labels.shift();
-                chart.update('none');
-            }
-        }, 3000); // تحديث كل 3 ثواني
-    }
-
-    // Trading Logic
-    function trade(type) {
-        let amt = parseFloat(document.getElementById('amount').value);
-        if (isNaN(amt) || amt <= 0) return alert("Enter valid amount");
-
-        if (type === 'BUY') {
-            if (amt > balance) return alert("Insufficient funds!");
-            balance -= amt;
-            showToast(`Successfully Bought $${amt}`, 'var(--accent)');
-        } else {
-            balance += amt; // Simplified: selling for profit
-            showToast(`Successfully Sold $${amt}`, 'var(--danger)');
-        }
-
-        updateBalanceUI();
-        addOrder(type, amt);
-        document.getElementById('amount').value = '';
-    }
-
-    function addOrder(type, amt) {
-        let container = document.getElementById('orders');
-        let item = document.createElement('div');
-        let color = type === 'BUY' ? 'var(--accent)' : 'var(--danger)';
-        item.innerHTML = `<span style="color:${color}; font-weight:bold">${type}</span> <span>$${amt.toLocaleString()}</span> <span style="font-size:10px; color:gray">${new Date().toLocaleTimeString()}</span>`;
-        container.prepend(item);
-    }
-
-    function showToast(msg, color) {
-        let t = document.getElementById('toast');
-        t.innerText = msg;
-        t.style.background = color;
-        t.style.color = color === 'var(--accent)' ? 'black' : 'white';
-        t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 3000);
-    }
-
-    init();
-    fetchPrices();
+    if(f("BTCUSDT")) btc.innerText="$"+Number(f("BTCUSDT")).toLocaleString();
+    if(f("ETHUSDT")) eth.innerText="$"+Number(f("ETHUSDT")).toLocaleString();
+    if(f("BNBUSDT")) bnb.innerText="$"+Number(f("BNBUSDT")).toLocaleString();
+  } catch(e) { console.log("Error fetching prices"); }
+}
+load();
+setInterval(load,5000);
 </script>
 
 </body>
