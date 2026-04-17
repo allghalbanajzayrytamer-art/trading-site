@@ -76,6 +76,28 @@
     background: var(--bg-dark);
   }
 
+  /* AD BANNER (BINANCE AFFILIATE) */
+  .ad-container {
+    padding: 15px 20px;
+  }
+
+  .ad-banner {
+    background: linear-gradient(135deg, #1e2329 0%, #474d57 100%);
+    border: 1px solid var(--primary);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  .ad-banner:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(250, 204, 21, 0.2);
+  }
+
   /* GRID OVERVIEW */
   .grid {
     display: grid;
@@ -89,13 +111,7 @@
     padding: 20px;
     border-radius: 15px;
     border: 1px solid #1f2937;
-    transition: transform 0.3s;
-    cursor: pointer;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
+    transition: 0.3s;
   }
 
   /* PROFILE SECTION */
@@ -109,7 +125,6 @@
 
   .profile h3 { color: var(--primary); margin-top: 0; }
   .profile a { color: var(--primary); text-decoration: none; font-weight: bold; }
-  .profile a:hover { text-decoration: underline; }
 
   /* FLOATING WHATSAPP BUTTON */
   .whatsapp-btn {
@@ -135,15 +150,8 @@
     padding: 30px 20px;
     background: #090e1a;
     color: var(--text-gray);
-    font-size: 13px;
+    font-size: 12px;
     border-top: 1px solid #1f2937;
-  }
-
-  .disclaimer {
-    max-width: 800px;
-    margin: 10px auto;
-    font-size: 11px;
-    opacity: 0.7;
   }
 </style>
 </head>
@@ -163,7 +171,15 @@
 
 <div id="chart"></div>
 
-<h3 style="padding: 20px 20px 0 20px; color: var(--primary);">نظرة عامة على السوق</h3>
+<div class="ad-container">
+  <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank" class="ad-banner">
+    <h3 style="color: var(--primary); margin: 0 0 10px 0;">سجل في Binance واحصل على 100 USDT 🎁</h3>
+    <p style="color: #fff; margin: 0 0 15px 0; font-size: 14px;">استخدم رابط الإحالة الخاص بنا للحصول على خصم على رسوم التداول ومكافآت ترحيبية.</p>
+    <div style="display: inline-block; background: var(--primary); color: #000; padding: 10px 30px; border-radius: 8px; font-weight: bold;">انضم الآن</div>
+  </a>
+</div>
+
+<h3 style="padding: 10px 20px 0 20px; color: var(--primary);">نظرة عامة على السوق</h3>
 
 <div class="grid">
   <div class="card">
@@ -192,7 +208,7 @@
 
 <footer>
   <p>© 2024 Amine Trading Platform</p>
-  <p class="disclaimer">تنبيه المخاطر: التداول في الأسواق المالية (كريبتو، فوركس) ينطوي على مخاطرة كبيرة برأس المال. المحتوى المقدم لأغراض تعليمية وإخبارية فقط ولا يعتبر نصيحة استثمارية.</p>
+  <p style="opacity: 0.6;">تنبيه المخاطر: التداول ينطوي على مخاطرة كبيرة. المحتوى للأغراض التعليمية فقط.</p>
 </footer>
 
 <script>
@@ -232,7 +248,7 @@ async function loadPrices(){
 }
 
 loadPrices();
-setInterval(loadPrices, 8000); // تحديث كل 8 ثوانٍ
+setInterval(loadPrices, 8000);
 </script>
 
 </body>
