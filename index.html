@@ -1,107 +1,109 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>Amine Trading Platform</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://s3.tradingview.com/tv.js"></script>
-    <style>
-        :root{ --primary:#facc15; --bg:#0b0f19; --card:#111827; --text:#9ca3af; --green:#22c55e; --red:#ef4444; }
-        body{ margin:0; font-family: sans-serif; background:var(--bg); color:white; line-height: 1.6; }
-        .header{ display:flex; justify-content:space-between; align-items: center; padding:15px 20px; background:var(--card); position:sticky; top:0; z-index: 1000; border-bottom: 1px solid #1f2937; }
-        .ticker{ display:flex; gap:10px; padding:15px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-        .coin{ background:var(--card); padding:10px; border-radius:12px; min-width:120px; border: 1px solid #1f2937; text-align: center; }
-        .coin span { color: var(--green); font-weight: bold; display: block; font-size: 14px; }
-        #chart-container { padding: 0 10px; margin-top: 5px; }
-        #tradingview_widget { height:450px; border-radius: 12px; overflow: hidden; border: 1px solid #1f2937; }
-        .section-title { color:var(--primary); border-right: 4px solid var(--primary); padding-right: 15px; margin: 25px 20px 15px; font-size: 18px; }
-        .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 20px; }
-        .edu-card { background: var(--card); padding: 15px 5px; border-radius: 15px; text-align: center; border: 1px solid #1f2937; text-decoration: none; color: white; font-size: 11px; display: block; }
-        .edu-card i { font-size: 24px; display: block; margin-bottom: 5px; }
-        .ad{ padding:20px; }
-        .ad a{ display:block; text-align:center; padding:20px; border-radius:20px; background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%); border:2px solid var(--primary); text-decoration:none; color:white; }
-        .btn-box { padding: 0 20px; }
-        .box { background:var(--card); padding:15px; border-radius:15px; margin-bottom:10px; border: 1px solid #1f2937; text-align: center; }
-        .btn{ display:inline-block; padding:10px; border-radius:8px; font-weight:bold; text-decoration:none; width: 90%; color:white; }
-        .fb{ background:#1877f2; }
-        .wa{ background:#25d366; }
-        .float-wa{ position:fixed; bottom:20px; left:20px; background:#25d366; padding:10px 15px; border-radius:50px; color:white; text-decoration:none; font-weight: bold; font-size: 12px; z-index: 999; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        footer{ text-align:center; padding:30px 20px; font-size:11px; color:var(--text); background: #05070a; }
-    </style>
+<meta charset="UTF-8">
+<title>Amine Trading Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://s3.tradingview.com/tv.js"></script>
+<style>
+  :root{ --primary:#facc15; --bg:#0b0f19; --card:#111827; --text:#9ca3af; --green:#22c55e; --red:#ef4444; }
+  body{ margin:0; font-family: 'Segoe UI', sans-serif; background:var(--bg); color:white; }
+  .header{ display:flex; justify-content:space-between; align-items: center; padding:15px 20px; background:var(--card); border-bottom: 1px solid #1f2937; position:sticky; top:0; z-index:1000; }
+  .ticker{ display:flex; gap:10px; padding:15px; overflow-x:auto; scrollbar-width: none; }
+  .coin{ background:var(--card); padding:12px; border-radius:12px; min-width:130px; border: 1px solid #1f2937; text-align:center; }
+  .coin span { color: var(--green); font-weight: bold; display:block; margin-top:5px; }
+  #tradingview_widget { height:400px; margin: 10px; border-radius:12px; overflow:hidden; border:1px solid #1f2937; }
+  .edu-section { padding: 20px; }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .edu-card { background: var(--card); padding: 15px 5px; border-radius: 12px; text-align: center; border: 1px solid #1f2937; text-decoration: none; color: white; font-size: 11px; }
+  .edu-card i { font-size: 25px; display: block; margin-bottom: 5px; }
+  .ad{ padding:20px; }
+  .ad a{ display:block; text-align:center; padding:25px; border-radius:20px; background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%); border:2px solid var(--primary); text-decoration:none; color:white; }
+  .contact{ padding:20px; }
+  .box{ background:var(--card); padding:15px; border-radius:15px; margin-bottom:15px; border: 1px solid #1f2937; text-align:center; }
+  .btn{ display:inline-block; padding:12px; border-radius:10px; font-weight:bold; text-decoration:none; width: 85%; color:white; }
+  .fb{ background:#1877f2; }
+  .wa{ background:#25d366; }
+  .float-wa{ position:fixed; bottom:20px; left:20px; background:#25d366; padding:12px 20px; border-radius:50px; color:white; text-decoration:none; font-weight: bold; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+  footer{ text-align:center; padding:30px; font-size:11px; color:var(--text); background: #05070a; }
+</style>
 </head>
 <body>
 
 <div class="header">
-    <div style="color:var(--primary); font-size: 18px; font-weight: bold;">Amine Trading 🚀</div>
-    <div style="color:var(--green); font-size: 12px;">● مباشر مباشر</div>
+  <div style="color:var(--primary); font-size: 18px; font-weight: bold;">Amine Trading 🚀</div>
+  <div style="color:var(--green); font-size: 12px;">● مباشر مباشر</div>
 </div>
 
 <div class="ticker">
-    <div class="coin">BTC/USDT <span id="btc_price">...</span></div>
-    <div class="coin">ETH/USDT <span id="eth_price">...</span></div>
-    <div class="coin">BNB/USDT <span id="bnb_price">...</span></div>
-    <div class="coin">SOL/USDT <span id="sol_price">...</span></div>
+  <div class="coin">BTC <span id="btc_p">...</span></div>
+  <div class="coin">ETH <span id="eth_p">...</span></div>
+  <div class="coin">BNB <span id="bnb_p">...</span></div>
 </div>
 
-<div id="chart-container">
-    <div id="tradingview_widget"></div>
-</div>
+<div id="tradingview_widget"></div>
 
-<h2 class="section-title">🎓 تعلم الأساسيات</h2>
-<div class="edu-grid">
-    <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/candles.html" class="edu-card"><i>🕯️</i><h3>الشموع</h3></a>
-    <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/p2p-guide.html" class="edu-card"><i>💳</i><h3>شراء USDT</h3></a>
-    <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/risk-management.html" class="edu-card"><i>🛡️</i><h3>المخاطر</h3></a>
+<div class="edu-section">
+    <h3 style="color:var(--primary); margin-bottom:15px;">🎓 تعلم التداول</h3>
+    <div class="edu-grid">
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/candles.html" class="edu-card"><i>🕯️</i>الشمعات</a>
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/p2p-guide.html" class="edu-card"><i>💳</i>شراء USDT</a>
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/risk-management.html" class="edu-card"><i>🛡️</i>المخاطر</a>
+    </div>
 </div>
 
 <div class="ad">
-    <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
-        <h3 style="color:var(--primary); margin:0;">🚀 ابدأ في Binance</h3>
-        <p style="color: #9ca3af; font-size: 12px; margin: 5px 0;">سجل واحصل على بونص ترحيبي</p>
-        <div style="background:var(--primary); color:black; padding:8px 15px; border-radius:8px; display:inline-block; font-weight:bold; font-size:14px;">سجل الآن</div>
-    </a>
+  <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
+    <h3 style="color:var(--primary); margin:0;">🚀 ابدأ في Binance</h3>
+    <p style="color: #9ca3af; font-size: 12px;">سجل الآن واحصل على بونص خاص</p>
+    <div style="background:var(--primary); color:black; padding:8px 15px; border-radius:8px; display:inline-block; font-weight:bold; margin-top:10px;">سجل مجاناً</div>
+  </a>
 </div>
 
-<div class="btn-box">
-    <div class="box"><a class="btn fb" href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">صفحة الفيسبوك</a></div>
-    <div class="box"><a class="btn wa" href="https://wa.me/213663190202" target="_blank">راسلني واتساب</a></div>
+<div class="contact">
+  <div class="box">
+    <a class="btn fb" href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">صفحة الفيسبوك</a>
+  </div>
+  <div class="box">
+    <a class="btn wa" href="https://wa.me/213663190202" target="_blank">راسلني واتساب</a>
+  </div>
 </div>
 
-<a class="float-wa" href="https://wa.me/213663190202">💬 راسلني مباشر</a>
+<a class="float-wa" href="https://wa.me/213663190202">💬 مباشر</a>
 
-<footer>© 2026 Amine Trading | تحديث مباشر للأسعار 📊</footer>
+<footer>© 2026 Amine Trading | الأسعار تتحدث كل 5 ثواني</footer>
 
 <script>
-// تفعيل الـ Chart المطور مع التحديث اللحظي
+// الشارت المطور (يتحدث تلقائياً)
 new TradingView.widget({
   "width": "100%",
-  "height": 450,
+  "height": 400,
   "symbol": "BINANCE:BTCUSDT",
-  "interval": "1", // تحديث كل دقيقة
+  "interval": "1",
   "timezone": "Africa/Algiers",
   "theme": "dark",
   "style": "1",
   "locale": "ar",
-  "toolbar_bg": "#f1f3f6",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "container_id": "tradingview_widget"
+  "container_id": "tradingview_widget",
+  "allow_symbol_change": true
 });
 
-// جلب الأسعار للشريط العلوي
-async function getPrices() {
-    try {
-        const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","ETHUSDT","BNBUSDT","SOLUSDT"]');
-        const data = await res.json();
-        const map = { 'BTCUSDT': 'btc_price', 'ETHUSDT': 'eth_price', 'BNBUSDT': 'bnb_price', 'SOLUSDT': 'sol_price' };
-        data.forEach(coin => {
-            const el = document.getElementById(map[coin.symbol]);
-            if(el) el.innerText = "$" + parseFloat(coin.price).toLocaleString(undefined, {minimumFractionDigits: 2});
-        });
-    } catch (e) { console.log("Price Error"); }
+// جلب الأسعار بشكل صحيح
+async function updatePrices(){
+  try {
+    const r = await fetch("https://api.binance.com/api/v3/ticker/price?symbols=[%22BTCUSDT%22,%22ETHUSDT%22,%22BNBUSDT%22]");
+    const d = await r.json();
+    const prices = {};
+    d.forEach(item => { prices[item.symbol] = item.price; });
+
+    document.getElementById("btc_p").innerText = "$" + parseFloat(prices.BTCUSDT).toLocaleString();
+    document.getElementById("eth_p").innerText = "$" + parseFloat(prices.ETHUSDT).toLocaleString();
+    document.getElementById("bnb_p").innerText = "$" + parseFloat(prices.BNBUSDT).toLocaleString();
+  } catch(e) { console.log("Error"); }
 }
-setInterval(getPrices, 5000);
-getPrices();
+setInterval(updatePrices, 5000);
+updatePrices();
 </script>
+
 </body>
 </html>
