@@ -14,11 +14,12 @@
   --card:#111827;
   --text:#9ca3af;
   --green:#22c55e;
+  --red:#ef4444;
 }
 
 body{
   margin:0;
-  font-family:sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background:var(--bg);
   color:white;
 }
@@ -27,10 +28,13 @@ body{
 .header{
   display:flex;
   justify-content:space-between;
-  padding:15px;
+  align-items: center;
+  padding:15px 20px;
   background:var(--card);
   position:sticky;
   top:0;
+  z-index: 1000;
+  border-bottom: 1px solid #1f2937;
 }
 
 /* TICKER */
@@ -39,71 +43,80 @@ body{
   gap:10px;
   padding:15px;
   overflow:auto;
+  scrollbar-width: none;
 }
 .coin{
   background:var(--card);
-  padding:10px;
-  border-radius:10px;
-  min-width:120px;
+  padding:12px;
+  border-radius:12px;
+  min-width:130px;
+  border: 1px solid #1f2937;
 }
+.coin span { color: var(--green); font-weight: bold; }
 
 /* CHART */
 #chart{
-  height:450px;
+  height:400px;
+  margin: 10px 0;
 }
 
-/* AD */
-.ad{
-  padding:20px;
-}
+/* AD SECTION */
+.ad{ padding:20px; }
 .ad a{
   display:block;
   text-align:center;
-  padding:25px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#1e2329,#474d57);
-  border:1px solid var(--primary);
+  padding:30px;
+  border-radius:20px;
+  background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%);
+  border:2px solid var(--primary);
   text-decoration:none;
   color:white;
+  transition: 0.3s;
 }
+.ad a:hover { transform: scale(1.02); }
 
-/* BLOG */
-.blog{
-  padding:20px;
+/* NEW EDUCATION SECTION */
+.edu-section { padding: 20px; }
+.edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
 }
-.article{
+.edu-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #1f2937;
+    transition: 0.3s;
+    text-decoration: none;
+    color: white;
+}
+.edu-card:hover { border-color: var(--primary); background: #1c2533; }
+.edu-card i { font-size: 30px; display: block; margin-bottom: 10px; }
+.edu-card h3 { font-size: 16px; color: var(--primary); margin: 0; }
+
+/* BLOG & CONTACT */
+.blog, .contact{ padding:20px; }
+.article, .box{
   background:var(--card);
   padding:20px;
   border-radius:15px;
   margin-bottom:15px;
+  border: 1px solid #1f2937;
 }
-.article h2{color:var(--primary);}
+.article h2, .box h3 { color:var(--primary); margin-top: 0; }
 
-/* CONTACT */
-.contact{
-  padding:20px;
-}
-.box{
-  background:var(--card);
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:15px;
-}
 .btn{
   display:inline-block;
-  padding:10px 20px;
+  padding:12px 25px;
   border-radius:10px;
   font-weight:bold;
   text-decoration:none;
+  text-align: center;
 }
-.fb{
-  background:#1877f2;
-  color:white;
-}
-.wa{
-  background:#25d366;
-  color:white;
-}
+.fb{ background:#1877f2; color:white; width: 80%; }
+.wa{ background:#25d366; color:white; width: 80%; }
 
 /* WHATSAPP FLOAT */
 .float-wa{
@@ -111,18 +124,21 @@ body{
   bottom:20px;
   left:20px;
   background:#25d366;
-  padding:12px 18px;
+  padding:15px 20px;
   border-radius:50px;
   color:white;
   text-decoration:none;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 999;
 }
 
-/* FOOTER */
 footer{
   text-align:center;
-  padding:20px;
+  padding:40px 20px;
   font-size:12px;
   color:var(--text);
+  background: #05070a;
 }
 </style>
 </head>
@@ -130,111 +146,104 @@ footer{
 <body>
 
 <div class="header">
-  <div style="color:var(--primary)">Amine Trading 🚀</div>
-  <div style="color:var(--green)">● LIVE</div>
+  <div style="color:var(--primary); font-size: 20px; font-weight: bold;">Amine Trading 🚀</div>
+  <div style="color:var(--green); font-size: 14px;">● بالسوق مباشر</div>
 </div>
 
 <div class="ticker">
-  <div class="coin">BTC <span id="btc"></span></div>
-  <div class="coin">ETH <span id="eth"></span></div>
-  <div class="coin">BNB <span id="bnb"></span></div>
+  <div class="coin">BTC <span id="btc">...</span></div>
+  <div class="coin">ETH <span id="eth">...</span></div>
+  <div class="coin">BNB <span id="bnb">...</span></div>
 </div>
 
 <div id="chart"></div>
 
-<!-- 🔥 BINANCE AD -->
+<div class="edu-section">
+    <h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">🎓 تعلم الأساسيات</h2>
+    <div class="edu-grid">
+        <a href="candles.html" class="edu-card">
+            <i>🕯️</i>
+            <h3>الشموع اليابانية</h3>
+        </a>
+        <a href="p2p-guide.html" class="edu-card">
+            <i>💳</i>
+            <h3>شراء USDT</h3>
+        </a>
+        <a href="risk-management.html" class="edu-card">
+            <i>🛡️</i>
+            <h3>إدارة المخاطر</h3>
+        </a>
+    </div>
+</div>
+
 <div class="ad">
 <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
-
-<h2 style="color:var(--primary)">🚀 تعلم التداول الآن</h2>
-<p>
-✔️ بونيس حتى 100$<br>
-✔️ منصة عالمية<br>
-✔️ مناسب للمبتدئين
-</p>
-
+<h2 style="color:var(--primary)">🚀 ابدأ التداول في Binance</h2>
+<p style="color: #9ca3af;">سجل الآن واحصل على بونيس ترحيبي خاص عبر رابطنا</p>
+<div style="background:var(--primary); color:black; padding:10px; border-radius:8px; display:inline-block; font-weight:bold; margin-top:10px;">سجل الآن مجاناً</div>
 </a>
 </div>
 
-<!-- 📚 ARTICLES -->
 <div class="blog">
-
-<h2 style="color:var(--primary)">📚 مقالات تعليم التداول</h2>
-
+<h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">📚 مقالات تهمك</h2>
 <div class="article">
-<h2>كيف تبدأ التداول</h2>
-<p>تعلم الأساسيات قبل الدخول للسوق...</p>
+<h2>أهم أخطاء المبتدئين</h2>
+<p>التداول بدون خطة هو أسرع طريق لخسارة رأس مالك. تعلم كيف تضع استراتيجية...</p>
+</div>
 </div>
 
-<div class="article">
-<h2>أخطاء المبتدئين</h2>
-<p>أهم خطأ هو الدخول بدون خطة...</p>
-</div>
-
-</div>
-
-<!-- 👇 CONTACT FIXED -->
 <div class="contact">
-
-<h2 style="color:var(--primary)">📞 تواصل معي</h2>
-
-<div class="box">
-<h3>📘 Facebook</h3>
-<p>تابعني على فيسبوك للتحديثات</p>
-
-<a class="btn fb" 
-href="https://www.facebook.com/share/1Dok9tsche/" 
-target="_blank">
-فتح Facebook
-</a>
+<h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">📞 تواصل مباشر</h2>
+<div class="box" style="text-align:center;">
+<h3>📘 صفحة الفيسبوك</h3>
+<a class="btn fb" href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">متابعة التحديثات</a>
+</div>
+<div class="box" style="text-align:center;">
+<h3>💬 استفسار خاص</h3>
+<a class="btn wa" href="https://wa.me/213663190202" target="_blank">راسلني واتساب</a>
+</div>
 </div>
 
-<div class="box">
-<h3>💬 WhatsApp</h3>
-<p>تواصل معي مباشرة عبر واتساب</p>
-
-<a class="btn wa" 
-href="https://wa.me/213663190202" 
-target="_blank">
-فتح WhatsApp
-</a>
-</div>
-
-</div>
-
-<!-- FLOAT WA -->
-<a class="float-wa" href="https://wa.me/213663190202">
-💬 Chat
-</a>
+<a class="float-wa" href="https://wa.me/213663190202">💬 تواصل معي</a>
 
 <footer>
-© 2026 Amine Trading Platform  
-<br>
-⚠️ التداول فيه مخاطر  
-<br>
-روابط إحالة موجودة
+© 2026 Amine Trading Platform<br>
+⚠️ تحذير: التداول ينطوي على مخاطر عالية لخسارة الأموال.<br>
+جميع الحقوق محفوظة.
 </footer>
 
 <script>
 new TradingView.widget({
   container_id:"chart",
   width:"100%",
-  height:450,
+  height:400,
   symbol:"BINANCE:BTCUSDT",
-  theme:"dark"
+  interval: "60",
+  theme:"dark",
+  style: "1",
+  locale: "ar",
+  toolbar_bg: "#f1f3f6",
+  enable_publishing: false,
+  hide_side_toolbar: false,
+  allow_symbol_change: true,
+  details: true,
+  hotlist: true,
+  calendar: true
 });
 
 async function load(){
-  const r=await fetch("https://api.binance.com/api/v3/ticker/price");
-  const d=await r.json();
-  const f=s=>d.find(x=>x.symbol===s)?.price;
+  try {
+    const r=await fetch("https://api.binance.com/api/v3/ticker/price");
+    const d=await r.json();
+    const f=s=>d.find(x=>x.symbol===s)?.price;
 
-  btc.innerText="$"+Number(f("BTCUSDT")).toFixed(2);
-  eth.innerText="$"+Number(f("ETHUSDT")).toFixed(2);
-  bnb.innerText="$"+Number(f("BNBUSDT")).toFixed(2);
+    if(f("BTCUSDT")) btc.innerText="$"+Number(f("BTCUSDT")).toLocaleString();
+    if(f("ETHUSDT")) eth.innerText="$"+Number(f("ETHUSDT")).toLocaleString();
+    if(f("BNBUSDT")) bnb.innerText="$"+Number(f("BNBUSDT")).toLocaleString();
+  } catch(e) { console.log("Error fetching prices"); }
 }
 load();
-setInterval(load,8000);
+setInterval(load,5000);
 </script>
 
 </body>
