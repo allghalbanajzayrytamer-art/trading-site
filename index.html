@@ -1,250 +1,252 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Amine Trading Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-
-<style>
-:root{
-  --primary:#facc15;
-  --bg:#0b0f19;
-  --card:#111827;
-  --text:#9ca3af;
-  --green:#22c55e;
-  --red:#ef4444;
-}
-
+<title>TradeX Pro Ultimate</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script><style>
 body{
-  margin:0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background:var(--bg);
-  color:white;
+margin:0;
+font-family:Inter,sans-serif;
+background:#0b0f1a;
+color:#fff;
+overflow-x:hidden;
 }
 
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items: center;
-  padding:15px 20px;
-  background:var(--card);
-  position:sticky;
-  top:0;
-  z-index: 1000;
-  border-bottom: 1px solid #1f2937;
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:220px;
+height:100%;
+background:#0f172a;
+padding:20px;
 }
 
-/* TICKER */
-.ticker{
-  display:flex;
-  gap:10px;
-  padding:15px;
-  overflow:auto;
-  scrollbar-width: none;
-}
-.coin{
-  background:var(--card);
-  padding:12px;
-  border-radius:12px;
-  min-width:130px;
-  border: 1px solid #1f2937;
-}
-.coin span { color: var(--green); font-weight: bold; }
-
-/* CHART */
-#chart{
-  height:400px;
-  margin: 10px 0;
+.logo{
+font-weight:800;
+color:#00ff99;
+font-size:20px;
+margin-bottom:30px;
 }
 
-/* AD SECTION */
-.ad{ padding:20px; }
-.ad a{
-  display:block;
-  text-align:center;
-  padding:30px;
-  border-radius:20px;
-  background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%);
-  border:2px solid var(--primary);
-  text-decoration:none;
-  color:white;
-  transition: 0.3s;
-}
-.ad a:hover { transform: scale(1.02); }
-
-/* NEW EDUCATION SECTION */
-.edu-section { padding: 20px; }
-.edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-}
-.edu-card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    border: 1px solid #1f2937;
-    transition: 0.3s;
-    text-decoration: none;
-    color: white;
-}
-.edu-card:hover { border-color: var(--primary); background: #1c2533; }
-.edu-card i { font-size: 30px; display: block; margin-bottom: 10px; }
-.edu-card h3 { font-size: 16px; color: var(--primary); margin: 0; }
-
-/* BLOG & CONTACT */
-.blog, .contact{ padding:20px; }
-.article, .box{
-  background:var(--card);
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:15px;
-  border: 1px solid #1f2937;
-}
-.article h2, .box h3 { color:var(--primary); margin-top: 0; }
-
-.btn{
-  display:inline-block;
-  padding:12px 25px;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
-  text-align: center;
-}
-.fb{ background:#1877f2; color:white; width: 80%; }
-.wa{ background:#25d366; color:white; width: 80%; }
-
-/* WHATSAPP FLOAT */
-.float-wa{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:#25d366;
-  padding:15px 20px;
-  border-radius:50px;
-  color:white;
-  text-decoration:none;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  z-index: 999;
+.nav-item{
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+cursor:pointer;
+color:#cbd5e1;
 }
 
-footer{
-  text-align:center;
-  padding:40px 20px;
-  font-size:12px;
-  color:var(--text);
-  background: #05070a;
+.nav-item:hover{background:#111827;color:white;}
+
+.main{
+margin-left:240px;
+padding:20px;
 }
-</style>
-</head>
 
-<body>
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-<div class="header">
-  <div style="color:var(--primary); font-size: 20px; font-weight: bold;">Amine Trading 🚀</div>
-  <div style="color:var(--green); font-size: 14px;">● بالسوق مباشر</div>
+.card-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.card{
+background:#111827;
+padding:15px;
+border-radius:12px;
+border:1px solid #1f2937;
+}
+
+.green{color:#00ff99;}
+.red{color:#ff4d4d;}
+
+.chart-box{
+margin-top:20px;
+background:#111827;
+padding:20px;
+border-radius:12px;
+}
+
+.trade-box{
+margin-top:20px;
+background:#111827;
+padding:20px;
+border-radius:12px;
+display:flex;
+gap:20px;
+}
+
+.trade-panel,.order-book{flex:1;}
+
+.order-book{
+background:#0f172a;
+padding:15px;
+border-radius:12px;
+}
+
+button{
+background:#00ff99;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+margin:5px 0;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:8px;
+border:none;
+background:#0b0f1a;
+color:white;
+}
+
+.modal{
+position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);
+display:flex;align-items:center;justify-content:center;
+}
+
+.modal-box{
+background:#111827;padding:25px;border-radius:12px;width:300px;
+}
+
+.toast{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#00ff99;
+color:black;
+padding:10px 15px;
+border-radius:8px;
+display:none;
+}
+</style></head><body><div class="toast" id="toast">Order Executed</div><!-- LOGIN --><div class="modal" id="loginModal">
+  <div class="modal-box">
+    <h3>Login</h3>
+    <input id="user" placeholder="Username">
+    <button onclick="login()">Enter</button>
+  </div>
+</div><div class="sidebar">
+<div class="logo">TRADEX PRO</div>
+<div class="nav-item">📊 Dashboard</div>
+<div class="nav-item">💰 Wallet</div>
+<div class="nav-item">📈 Markets</div>
+<div class="nav-item">⚙ Settings</div>
+</div><div class="main"><div class="topbar">
+<h2>Live Crypto Terminal</h2>
+<button onclick="startLive()">Start Live Mode</button>
+</div><div class="card-grid">
+<div class="card">BTC/USDT<br><b class="green" id="btc">Loading...</b></div>
+<div class="card">ETH/USDT<br><b class="red" id="eth">Loading...</b></div>
+<div class="card">XAU/USD<br><b class="green" id="gold">+0.76%</b></div>
+<div class="card">Balance<br><b id="balance">$0</b></div>
+</div><div class="chart-box">
+<h3>Market Chart (Simulated)</h3>
+<canvas id="chart"></canvas>
+</div><div class="trade-box">
+<div class="trade-panel">
+<h3>Trade</h3>
+<input id="amount" placeholder="Amount $">
+<button onclick="buy()">BUY</button>
+<button onclick="sell()" style="background:#ff4d4d;color:white;">SELL</button>
+</div><div class="order-book">
+<h3>Orders</h3>
+<div id="orders"></div>
 </div>
+</div></div><script>
 
-<div class="ticker">
-  <div class="coin">BTC <span id="btc">...</span></div>
-  <div class="coin">ETH <span id="eth">...</span></div>
-  <div class="coin">BNB <span id="bnb">...</span></div>
-</div>
-
-<div id="chart"></div>
-
-<div class="edu-section">
-    <h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">🎓 تعلم الأساسيات</h2>
-    <div class="edu-grid">
-        <a href="candles.html" class="edu-card">
-            <i>🕯️</i>
-            <h3>الشموع اليابانية</h3>
-        </a>
-        <a href="p2p-guide.html" class="edu-card">
-            <i>💳</i>
-            <h3>شراء USDT</h3>
-        </a>
-        <a href="risk-management.html" class="edu-card">
-            <i>🛡️</i>
-            <h3>إدارة المخاطر</h3>
-        </a>
-    </div>
-</div>
-
-<div class="ad">
-<a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
-<h2 style="color:var(--primary)">🚀 ابدأ التداول في Binance</h2>
-<p style="color: #9ca3af;">سجل الآن واحصل على بونيس ترحيبي خاص عبر رابطنا</p>
-<div style="background:var(--primary); color:black; padding:10px; border-radius:8px; display:inline-block; font-weight:bold; margin-top:10px;">سجل الآن مجاناً</div>
-</a>
-</div>
-
-<div class="blog">
-<h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">📚 مقالات تهمك</h2>
-<div class="article">
-<h2>أهم أخطاء المبتدئين</h2>
-<p>التداول بدون خطة هو أسرع طريق لخسارة رأس مالك. تعلم كيف تضع استراتيجية...</p>
-</div>
-</div>
-
-<div class="contact">
-<h2 style="color:var(--primary); border-right: 4px solid var(--primary); padding-right: 10px;">📞 تواصل مباشر</h2>
-<div class="box" style="text-align:center;">
-<h3>📘 صفحة الفيسبوك</h3>
-<a class="btn fb" href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">متابعة التحديثات</a>
-</div>
-<div class="box" style="text-align:center;">
-<h3>💬 استفسار خاص</h3>
-<a class="btn wa" href="https://wa.me/213663190202" target="_blank">راسلني واتساب</a>
-</div>
-</div>
-
-<a class="float-wa" href="https://wa.me/213663190202">💬 تواصل معي</a>
-
-<footer>
-© 2026 Amine Trading Platform<br>
-⚠️ تحذير: التداول ينطوي على مخاطر عالية لخسارة الأموال.<br>
-جميع الحقوق محفوظة.
-</footer>
-
-<script>
-new TradingView.widget({
-  container_id:"chart",
-  width:"100%",
-  height:400,
-  symbol:"BINANCE:BTCUSDT",
-  interval: "60",
-  theme:"dark",
-  style: "1",
-  locale: "ar",
-  toolbar_bg: "#f1f3f6",
-  enable_publishing: false,
-  hide_side_toolbar: false,
-  allow_symbol_change: true,
-  details: true,
-  hotlist: true,
-  calendar: true
-});
-
-async function load(){
-  try {
-    const r=await fetch("https://api.binance.com/api/v3/ticker/price");
-    const d=await r.json();
-    const f=s=>d.find(x=>x.symbol===s)?.price;
-
-    if(f("BTCUSDT")) btc.innerText="$"+Number(f("BTCUSDT")).toLocaleString();
-    if(f("ETHUSDT")) eth.innerText="$"+Number(f("ETHUSDT")).toLocaleString();
-    if(f("BNBUSDT")) bnb.innerText="$"+Number(f("BNBUSDT")).toLocaleString();
-  } catch(e) { console.log("Error fetching prices"); }
+// LOCAL STORAGE LOGIN
+function login(){
+ let u=document.getElementById('user').value;
+ if(!u) return;
+ localStorage.setItem('user',u);
+ document.getElementById('loginModal').style.display='none';
+ loadUser();
 }
-load();
-setInterval(load,5000);
-</script>
 
-</body>
+function loadUser(){
+ let user=localStorage.getItem('user');
+ if(!user){
+ document.getElementById('loginModal').style.display='flex';
+ }
+}
+
+let balance=parseFloat(localStorage.getItem('balance')||10000);
+
+document.getElementById('balance').innerText="$"+balance.toFixed(2);
+
+function saveBalance(){
+ localStorage.setItem('balance',balance);
+}
+
+// LIVE PRICES FROM COINGECKO
+async function loadPrices(){
+ try{
+ let res=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+ let data=await res.json();
+
+ document.getElementById('btc').innerText="$"+data.bitcoin.usd;
+ document.getElementById('eth').innerText="$"+data.ethereum.usd;
+ }catch(e){
+ document.getElementById('btc').innerText="error";
+ }
+}
+
+// CHART
+const ctx=document.getElementById('chart');
+let chart=new Chart(ctx,{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'BTC',data:[42000,43000,42800,44000,45000,46000,45500],borderColor:'#00ff99',tension:0.3}]},options:{plugins:{legend:{labels:{color:'white'}}},scales:{x:{ticks:{color:'white'}},y:{ticks:{color:'white'}}}}});
+
+function startLive(){
+setInterval(()=>{
+ chart.data.datasets[0].data=chart.data.datasets[0].data.map(x=>x+(Math.random()*500-250));
+ chart.update();
+ loadPrices();
+},3000);
+}
+
+function buy(){
+let amt=parseFloat(document.getElementById('amount').value||0);
+balance+=amt;
+saveBalance();
+document.getElementById('balance').innerText='$'+balance.toFixed(2);
+addOrder('BUY',amt);
+showToast('BUY EXECUTED');
+}
+
+function sell(){
+let amt=parseFloat(document.getElementById('amount').value||0);
+balance-=amt;
+saveBalance();
+document.getElementById('balance').innerText='$'+balance.toFixed(2);
+addOrder('SELL',amt);
+showToast('SELL EXECUTED');
+}
+
+function addOrder(t,a){
+let d=document.createElement('div');
+d.innerText=t+' $'+a;
+document.getElementById('orders').prepend(d);
+}
+
+function showToast(m){
+let t=document.getElementById('toast');
+t.innerText=m;
+t.style.display='block';
+setTimeout(()=>t.style.display='none',2000);
+}
+
+loadUser();
+loadPrices();
+
+</script></body>
 </html>
