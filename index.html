@@ -108,6 +108,8 @@
   }
 
   .profile h3 { color: var(--primary); margin-top: 0; }
+  .profile a { color: var(--primary); text-decoration: none; font-weight: bold; }
+  .profile a:hover { text-decoration: underline; }
 
   /* FLOATING WHATSAPP BUTTON */
   .whatsapp-btn {
@@ -180,8 +182,8 @@
 
 <div class="profile">
   <h3>👑 Amine Profile</h3>
-  <p>👤 فيسبوك: <a href="#" style="color:white; text-decoration:none;">Amine ov</a></p>
-  <p>📞 الهاتف: <span dir="ltr">+213 663 190 202</span></p>
+  <p>👤 فيسبوك: <a href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">Amine ov</a></p>
+  <p>📞 الهاتف: <a href="tel:+213663190202"><span dir="ltr">+213 663 190 202</span></a></p>
 </div>
 
 <a href="https://wa.me/213663190202" class="whatsapp-btn" target="_blank">
@@ -217,5 +219,21 @@ async function loadPrices(){
     const data = await res.json();
 
     const find = (symbol) => {
-      const
-  
+      const price = data.find(x => x.symbol === symbol)?.price;
+      return price ? parseFloat(price).toLocaleString(undefined, {minimumFractionDigits: 2}) : "---";
+    }
+
+    document.getElementById("btc").innerText = "$" + find("BTCUSDT");
+    document.getElementById("eth").innerText = "$" + find("ETHUSDT");
+    document.getElementById("bnb").innerText = "$" + find("BNBUSDT");
+  } catch (e) {
+    console.log("خطأ في الاتصال بالبيانات");
+  }
+}
+
+loadPrices();
+setInterval(loadPrices, 8000); // تحديث كل 8 ثوانٍ
+</script>
+
+</body>
+</html>
