@@ -1,252 +1,351 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TradeX Pro Ultimate</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script><style>
-body{
-margin:0;
-font-family:Inter,sans-serif;
-background:#0b0f1a;
-color:#fff;
-overflow-x:hidden;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeX Pro Ultimate | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #0b0f1a;
+            --card-bg: #111827;
+            --accent: #00ff99;
+            --danger: #ff4d4d;
+            --text-muted: #cbd5e1;
+        }
 
-.sidebar{
-position:fixed;
-left:0;
-top:0;
-width:220px;
-height:100%;
-background:#0f172a;
-padding:20px;
-}
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-.logo{
-font-weight:800;
-color:#00ff99;
-font-size:20px;
-margin-bottom:30px;
-}
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 220px;
+            height: 100%;
+            background: #0f172a;
+            padding: 20px;
+            border-right: 1px solid #1f2937;
+        }
 
-.nav-item{
-padding:12px;
-margin:8px 0;
-border-radius:8px;
-cursor:pointer;
-color:#cbd5e1;
-}
+        .logo {
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 22px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
 
-.nav-item:hover{background:#111827;color:white;}
+        .nav-item {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
 
-.main{
-margin-left:240px;
-padding:20px;
-}
+        .nav-item:hover, .nav-item.active {
+            background: #1e293b;
+            color: white;
+        }
 
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+        /* Main Content */
+        .main {
+            margin-left: 260px;
+            padding: 30px;
+        }
 
-.card-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-margin-top:20px;
-}
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
 
-.card{
-background:#111827;
-padding:15px;
-border-radius:12px;
-border:1px solid #1f2937;
-}
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
 
-.green{color:#00ff99;}
-.red{color:#ff4d4d;}
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            transition: transform 0.2s;
+        }
 
-.chart-box{
-margin-top:20px;
-background:#111827;
-padding:20px;
-border-radius:12px;
-}
+        .card:hover { transform: translateY(-5px); }
 
-.trade-box{
-margin-top:20px;
-background:#111827;
-padding:20px;
-border-radius:12px;
-display:flex;
-gap:20px;
-}
+        .green { color: var(--accent); }
+        .red { color: var(--danger); }
 
-.trade-panel,.order-book{flex:1;}
+        /* Chart */
+        .chart-box {
+            margin-top: 25px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+        }
 
-.order-book{
-background:#0f172a;
-padding:15px;
-border-radius:12px;
-}
+        /* Trade Section */
+        .trade-box {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
-button{
-background:#00ff99;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-cursor:pointer;
-font-weight:600;
-margin:5px 0;
-}
+        .trade-panel, .order-book {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+        }
 
-input{
-width:100%;
-padding:10px;
-margin:6px 0;
-border-radius:8px;
-border:none;
-background:#0b0f1a;
-color:white;
-}
+        button {
+            width: 100%;
+            background: var(--accent);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
 
-.modal{
-position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);
-display:flex;align-items:center;justify-content:center;
-}
+        button:active { transform: scale(0.98); }
 
-.modal-box{
-background:#111827;padding:25px;border-radius:12px;width:300px;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            background: #0b0f1a;
+            color: white;
+            box-sizing: border-box;
+        }
 
-.toast{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#00ff99;
-color:black;
-padding:10px 15px;
-border-radius:8px;
-display:none;
-}
-</style></head><body><div class="toast" id="toast">Order Executed</div><!-- LOGIN --><div class="modal" id="loginModal">
-  <div class="modal-box">
-    <h3>Login</h3>
-    <input id="user" placeholder="Username">
-    <button onclick="login()">Enter</button>
-  </div>
-</div><div class="sidebar">
-<div class="logo">TRADEX PRO</div>
-<div class="nav-item">📊 Dashboard</div>
-<div class="nav-item">💰 Wallet</div>
-<div class="nav-item">📈 Markets</div>
-<div class="nav-item">⚙ Settings</div>
-</div><div class="main"><div class="topbar">
-<h2>Live Crypto Terminal</h2>
-<button onclick="startLive()">Start Live Mode</button>
-</div><div class="card-grid">
-<div class="card">BTC/USDT<br><b class="green" id="btc">Loading...</b></div>
-<div class="card">ETH/USDT<br><b class="red" id="eth">Loading...</b></div>
-<div class="card">XAU/USD<br><b class="green" id="gold">+0.76%</b></div>
-<div class="card">Balance<br><b id="balance">$0</b></div>
-</div><div class="chart-box">
-<h3>Market Chart (Simulated)</h3>
-<canvas id="chart"></canvas>
-</div><div class="trade-box">
-<div class="trade-panel">
-<h3>Trade</h3>
-<input id="amount" placeholder="Amount $">
-<button onclick="buy()">BUY</button>
-<button onclick="sell()" style="background:#ff4d4d;color:white;">SELL</button>
-</div><div class="order-book">
-<h3>Orders</h3>
-<div id="orders"></div>
+        /* Modal */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .modal-box {
+            background: var(--card-bg); padding: 30px; border-radius: 16px; width: 320px; text-align: center;
+        }
+
+        /* Order List */
+        #orders div {
+            padding: 10px;
+            border-bottom: 1px solid #1f2937;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .toast {
+            position: fixed; bottom: 20px; right: 20px;
+            padding: 15px 25px; border-radius: 8px;
+            font-weight: 600; display: none; z-index: 200;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    </style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--accent)">Welcome Back</h2>
+        <p style="color: var(--text-muted)">Enter your name to start trading</p>
+        <input id="user" placeholder="Username">
+        <button onclick="login()">Access Terminal</button>
+    </div>
 </div>
-</div></div><script>
 
-// LOCAL STORAGE LOGIN
-function login(){
- let u=document.getElementById('user').value;
- if(!u) return;
- localStorage.setItem('user',u);
- document.getElementById('loginModal').style.display='none';
- loadUser();
-}
+<div class="sidebar">
+    <div class="logo">TRADEX PRO</div>
+    <div class="nav-item active">📊 Dashboard</div>
+    <div class="nav-item">💰 Wallet</div>
+    <div class="nav-item">📈 Markets</div>
+    <div class="nav-item">⚙ Settings</div>
+</div>
 
-function loadUser(){
- let user=localStorage.getItem('user');
- if(!user){
- document.getElementById('loginModal').style.display='flex';
- }
-}
+<div class="main">
+    <div class="topbar">
+        <h2>Live Terminal <span id="live-dot" style="color:var(--accent); font-size: 12px;">● LIVE</span></h2>
+        <div id="username-display" style="font-weight: 600; color: var(--text-muted)"></div>
+    </div>
 
-let balance=parseFloat(localStorage.getItem('balance')||10000);
+    <div class="card-grid">
+        <div class="card">BTC/USDT<br><b class="green" id="btc">Fetching...</b></div>
+        <div class="card">ETH/USDT<br><b class="green" id="eth">Fetching...</b></div>
+        <div class="card">24h Volume<br><b>$1.2B</b></div>
+        <div class="card">Available Balance<br><b id="balance" class="green">$0.00</b></div>
+    </div>
 
-document.getElementById('balance').innerText="$"+balance.toFixed(2);
+    <div class="chart-box">
+        <h3>Market Activity (BTC/USD)</h3>
+        <canvas id="chart" height="100"></canvas>
+    </div>
 
-function saveBalance(){
- localStorage.setItem('balance',balance);
-}
+    <div class="trade-box">
+        <div class="trade-panel">
+            <h3>Quick Trade</h3>
+            <label style="font-size: 12px; color: var(--text-muted)">Order Amount (USD)</label>
+            <input type="number" id="amount" placeholder="0.00">
+            <button onclick="trade('BUY')">BUY / LONG</button>
+            <button onclick="trade('SELL')" style="background:var(--danger); color:white;">SELL / SHORT</button>
+        </div>
+        <div class="order-book">
+            <h3>Recent Orders</h3>
+            <div id="orders"></div>
+        </div>
+    </div>
+</div>
 
-// LIVE PRICES FROM COINGECKO
-async function loadPrices(){
- try{
- let res=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
- let data=await res.json();
+<script>
+    let balance = parseFloat(localStorage.getItem('balance') || 10000);
+    let btcPrice = 0;
 
- document.getElementById('btc').innerText="$"+data.bitcoin.usd;
- document.getElementById('eth').innerText="$"+data.ethereum.usd;
- }catch(e){
- document.getElementById('btc').innerText="error";
- }
-}
+    // Login logic
+    function login() {
+        let u = document.getElementById('user').value;
+        if (!u) return;
+        localStorage.setItem('user', u);
+        document.getElementById('loginModal').style.display = 'none';
+        init();
+    }
 
-// CHART
-const ctx=document.getElementById('chart');
-let chart=new Chart(ctx,{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'BTC',data:[42000,43000,42800,44000,45000,46000,45500],borderColor:'#00ff99',tension:0.3}]},options:{plugins:{legend:{labels:{color:'white'}}},scales:{x:{ticks:{color:'white'}},y:{ticks:{color:'white'}}}}});
+    function init() {
+        let user = localStorage.getItem('user');
+        if (!user) {
+            document.getElementById('loginModal').style.display = 'flex';
+        } else {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('username-display').innerText = "Trader: " + user;
+            updateBalanceUI();
+            startLiveUpdates();
+        }
+    }
 
-function startLive(){
-setInterval(()=>{
- chart.data.datasets[0].data=chart.data.datasets[0].data.map(x=>x+(Math.random()*500-250));
- chart.update();
- loadPrices();
-},3000);
-}
+    function updateBalanceUI() {
+        document.getElementById('balance').innerText = "$" + balance.toLocaleString(undefined, {minimumFractionDigits: 2});
+        localStorage.setItem('balance', balance);
+    }
 
-function buy(){
-let amt=parseFloat(document.getElementById('amount').value||0);
-balance+=amt;
-saveBalance();
-document.getElementById('balance').innerText='$'+balance.toFixed(2);
-addOrder('BUY',amt);
-showToast('BUY EXECUTED');
-}
+    // API Integration
+    async function fetchPrices() {
+        try {
+            let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+            let data = await res.json();
+            btcPrice = data.bitcoin.usd;
+            
+            document.getElementById('btc').innerText = "$" + btcPrice.toLocaleString();
+            document.getElementById('eth').innerText = "$" + data.ethereum.usd.toLocaleString();
+            
+            return btcPrice;
+        } catch (e) {
+            console.error("Price fetch error");
+        }
+    }
 
-function sell(){
-let amt=parseFloat(document.getElementById('amount').value||0);
-balance-=amt;
-saveBalance();
-document.getElementById('balance').innerText='$'+balance.toFixed(2);
-addOrder('SELL',amt);
-showToast('SELL EXECUTED');
-}
+    // Chart Logic
+    const ctx = document.getElementById('chart').getContext('2d');
+    let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Array(10).fill(''),
+            datasets: [{
+                label: 'BTC Price',
+                data: Array(10).fill(null),
+                borderColor: '#00ff99',
+                backgroundColor: 'rgba(0, 255, 153, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { grid: { color: '#1f2937' }, ticks: { color: '#94a3b8' } },
+                x: { display: false }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
 
-function addOrder(t,a){
-let d=document.createElement('div');
-d.innerText=t+' $'+a;
-document.getElementById('orders').prepend(d);
-}
+    async function startLiveUpdates() {
+        setInterval(async () => {
+            let price = await fetchPrices();
+            if (price) {
+                chart.data.datasets[0].data.push(price);
+                chart.data.datasets[0].data.shift();
+                chart.data.labels.push(new Date().toLocaleTimeString());
+                chart.data.labels.shift();
+                chart.update('none');
+            }
+        }, 3000); // تحديث كل 3 ثواني
+    }
 
-function showToast(m){
-let t=document.getElementById('toast');
-t.innerText=m;
-t.style.display='block';
-setTimeout(()=>t.style.display='none',2000);
-}
+    // Trading Logic
+    function trade(type) {
+        let amt = parseFloat(document.getElementById('amount').value);
+        if (isNaN(amt) || amt <= 0) return alert("Enter valid amount");
 
-loadUser();
-loadPrices();
+        if (type === 'BUY') {
+            if (amt > balance) return alert("Insufficient funds!");
+            balance -= amt;
+            showToast(`Successfully Bought $${amt}`, 'var(--accent)');
+        } else {
+            balance += amt; // Simplified: selling for profit
+            showToast(`Successfully Sold $${amt}`, 'var(--danger)');
+        }
 
-</script></body>
+        updateBalanceUI();
+        addOrder(type, amt);
+        document.getElementById('amount').value = '';
+    }
+
+    function addOrder(type, amt) {
+        let container = document.getElementById('orders');
+        let item = document.createElement('div');
+        let color = type === 'BUY' ? 'var(--accent)' : 'var(--danger)';
+        item.innerHTML = `<span style="color:${color}; font-weight:bold">${type}</span> <span>$${amt.toLocaleString()}</span> <span style="font-size:10px; color:gray">${new Date().toLocaleTimeString()}</span>`;
+        container.prepend(item);
+    }
+
+    function showToast(msg, color) {
+        let t = document.getElementById('toast');
+        t.innerText = msg;
+        t.style.background = color;
+        t.style.color = color === 'var(--accent)' ? 'black' : 'white';
+        t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 3000);
+    }
+
+    init();
+    fetchPrices();
+</script>
+
+</body>
 </html>
