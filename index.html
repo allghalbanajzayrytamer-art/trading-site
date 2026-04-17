@@ -66,14 +66,6 @@ body{
   text-decoration:none;
   color:white;
 }
-.btn{
-  background:var(--primary);
-  color:black;
-  padding:10px 25px;
-  border-radius:10px;
-  display:inline-block;
-  font-weight:bold;
-}
 
 /* BLOG */
 .blog{
@@ -85,20 +77,36 @@ body{
   border-radius:15px;
   margin-bottom:15px;
 }
-.article h2{
-  color:var(--primary);
-}
+.article h2{color:var(--primary);}
 
-/* PROFILE */
-.profile{
+/* CONTACT */
+.contact{
   padding:20px;
-  background:#1f2937;
-  margin:20px;
+}
+.box{
+  background:var(--card);
+  padding:20px;
   border-radius:15px;
+  margin-bottom:15px;
+}
+.btn{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:10px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.fb{
+  background:#1877f2;
+  color:white;
+}
+.wa{
+  background:#25d366;
+  color:white;
 }
 
-/* WHATSAPP */
-.whatsapp{
+/* WHATSAPP FLOAT */
+.float-wa{
   position:fixed;
   bottom:20px;
   left:20px;
@@ -134,21 +142,16 @@ footer{
 
 <div id="chart"></div>
 
-<!-- 🔥 AD BINANCE -->
+<!-- 🔥 BINANCE AD -->
 <div class="ad">
 <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
 
-<h2 style="color:var(--primary)">🚀 تعلم التداول وابدأ الآن</h2>
-
+<h2 style="color:var(--primary)">🚀 تعلم التداول الآن</h2>
 <p>
 ✔️ بونيس حتى 100$<br>
-✔️ خصم رسوم التداول<br>
-✔️ منصة عالمية
+✔️ منصة عالمية<br>
+✔️ مناسب للمبتدئين
 </p>
-
-<div class="btn">🔥 سجل الآن</div>
-
-<p style="font-size:12px;opacity:.7;">عرض محدود</p>
 
 </a>
 </div>
@@ -159,47 +162,57 @@ footer{
 <h2 style="color:var(--primary)">📚 مقالات تعليم التداول</h2>
 
 <div class="article">
-<h2>كيف تبدأ التداول من الصفر</h2>
-<p>
-التداول هو مهارة لازم تتعلمها قبل ما تدخل بالفلوس.  
-أول خطوة هي اختيار منصة قوية كيما Binance، ومن بعد تبدأ تتعلم التحليل.
-</p>
-<a class="btn" href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE">ابدأ الآن</a>
+<h2>كيف تبدأ التداول</h2>
+<p>تعلم الأساسيات قبل الدخول للسوق...</p>
 </div>
 
 <div class="article">
-<h2>أخطاء المبتدئين في التداول</h2>
-<p>
-أكبر خطأ هو الدخول بدون خطة. لازم دايماً تحدد راس مالك وما تدخلش بعشوائية.
-</p>
-<a class="btn" href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE">تعلم أكثر</a>
-</div>
-
-<div class="article">
-<h2>كيف تتحكم في الخسارة</h2>
-<p>
-استعمال Stop Loss مهم بزاف باش ما تخسرش كامل رأس مالك في صفقة وحدة.
-</p>
-<a class="btn" href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE">ابدأ التداول</a>
+<h2>أخطاء المبتدئين</h2>
+<p>أهم خطأ هو الدخول بدون خطة...</p>
 </div>
 
 </div>
 
-<!-- 👑 PROFILE -->
-<div class="profile">
-<h3 style="color:var(--primary)">👑 Amine Profile</h3>
-<p>📞 0663 19 02 02</p>
-<p>📱 Facebook: Amine ov</p>
+<!-- 👇 CONTACT FIXED -->
+<div class="contact">
+
+<h2 style="color:var(--primary)">📞 تواصل معي</h2>
+
+<div class="box">
+<h3>📘 Facebook</h3>
+<p>تابعني على فيسبوك للتحديثات</p>
+
+<a class="btn fb" 
+href="https://www.facebook.com/share/1Dok9tsche/" 
+target="_blank">
+فتح Facebook
+</a>
 </div>
 
-<a class="whatsapp" href="https://wa.me/213663190202">💬 WhatsApp</a>
+<div class="box">
+<h3>💬 WhatsApp</h3>
+<p>تواصل معي مباشرة عبر واتساب</p>
+
+<a class="btn wa" 
+href="https://wa.me/213663190202" 
+target="_blank">
+فتح WhatsApp
+</a>
+</div>
+
+</div>
+
+<!-- FLOAT WA -->
+<a class="float-wa" href="https://wa.me/213663190202">
+💬 Chat
+</a>
 
 <footer>
 © 2026 Amine Trading Platform  
 <br>
 ⚠️ التداول فيه مخاطر  
 <br>
-هذا الموقع يحتوي على روابط إحالة
+روابط إحالة موجودة
 </footer>
 
 <script>
@@ -212,13 +225,13 @@ new TradingView.widget({
 });
 
 async function load(){
-  const r = await fetch("https://api.binance.com/api/v3/ticker/price");
-  const d = await r.json();
-  const f = s => d.find(x=>x.symbol===s)?.price;
+  const r=await fetch("https://api.binance.com/api/v3/ticker/price");
+  const d=await r.json();
+  const f=s=>d.find(x=>x.symbol===s)?.price;
 
-  btc.innerText = "$"+Number(f("BTCUSDT")).toFixed(2);
-  eth.innerText = "$"+Number(f("ETHUSDT")).toFixed(2);
-  bnb.innerText = "$"+Number(f("BNBUSDT")).toFixed(2);
+  btc.innerText="$"+Number(f("BTCUSDT")).toFixed(2);
+  eth.innerText="$"+Number(f("ETHUSDT")).toFixed(2);
+  bnb.innerText="$"+Number(f("BNBUSDT")).toFixed(2);
 }
 load();
 setInterval(load,8000);
