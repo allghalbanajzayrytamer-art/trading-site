@@ -13,10 +13,23 @@
   .coin{ background:var(--card); padding:12px; border-radius:12px; min-width:130px; border: 1px solid #1f2937; text-align:center; }
   .coin span { color: var(--green); font-weight: bold; display:block; margin-top:5px; }
   #tradingview_widget { height:400px; margin: 10px; border-radius:12px; overflow:hidden; border:1px solid #1f2937; }
+  
+  /* زر دليل المبتدئين الجديد */
+  .main-guide { padding: 0 20px; margin-bottom: 20px; }
+  .guide-btn { display: block; background: var(--primary); color: black; text-align: center; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 16px; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); }
+
   .edu-section { padding: 20px; }
   .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .edu-card { background: var(--card); padding: 15px 5px; border-radius: 12px; text-align: center; border: 1px solid #1f2937; text-decoration: none; color: white; font-size: 11px; }
   .edu-card i { font-size: 25px; display: block; margin-bottom: 5px; }
+  
+  /* قسم المقالات الجديد */
+  .blog-section { padding: 20px; }
+  .article-card { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #1f2937; margin-bottom: 15px; }
+  .article-card h4 { color: var(--primary); margin: 0 0 10px 0; font-size: 18px; }
+  .article-card p { color: var(--text); font-size: 13px; margin-bottom: 15px; }
+  .read-more { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 14px; }
+
   .ad{ padding:20px; }
   .ad a{ display:block; text-align:center; padding:25px; border-radius:20px; background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%); border:2px solid var(--primary); text-decoration:none; color:white; }
   .contact{ padding:20px; }
@@ -43,12 +56,25 @@
 
 <div id="tradingview_widget"></div>
 
+<div class="main-guide">
+    <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/start-trading.html" class="guide-btn">🔥 دليل المبتدئين: ابدأ التداول من الصفر هنا</a>
+</div>
+
 <div class="edu-section">
-    <h3 style="color:var(--primary); margin-bottom:15px;">🎓 تعلم التداول</h3>
+    <h3 style="color:var(--primary); margin-bottom:15px;">🎓 دروس تعليمية</h3>
     <div class="edu-grid">
         <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/candles.html" class="edu-card"><i>🕯️</i>الشمعات</a>
         <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/p2p-guide.html" class="edu-card"><i>💳</i>شراء USDT</a>
         <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/risk-management.html" class="edu-card"><i>🛡️</i>المخاطر</a>
+    </div>
+</div>
+
+<div class="blog-section">
+    <h3 style="color:var(--primary); margin-bottom:15px;">📚 مقالات تهمك</h3>
+    <div class="article-card">
+        <h4>كيف تبدأ التداول في الجزائر 🇩🇿؟</h4>
+        <p>دليلك الشامل لتعلم كيفية الشراء بالدينار الجزائري عبر BaridiMob والبدء في منصة Binance بأمان..</p>
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/start-trading.html" class="read-more">إقرأ المقال كاملاً ←</a>
     </div>
 </div>
 
@@ -71,10 +97,9 @@
 
 <a class="float-wa" href="https://wa.me/213663190202">💬 مباشر</a>
 
-<footer>© 2026 Amine Trading | الأسعار تتحدث كل 5 ثواني</footer>
+<footer>© 2026 Amine Trading | منصة تعليمية للمتداول الجزائري</footer>
 
 <script>
-// الشارت المطور (يتحدث تلقائياً)
 new TradingView.widget({
   "width": "100%",
   "height": 400,
@@ -88,7 +113,6 @@ new TradingView.widget({
   "allow_symbol_change": true
 });
 
-// جلب الأسعار بشكل صحيح
 async function updatePrices(){
   try {
     const r = await fetch("https://api.binance.com/api/v3/ticker/price?symbols=[%22BTCUSDT%22,%22ETHUSDT%22,%22BNBUSDT%22]");
