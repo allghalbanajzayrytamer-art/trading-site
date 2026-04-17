@@ -14,16 +14,19 @@
   .coin span { color: var(--green); font-weight: bold; display:block; margin-top:5px; }
   #tradingview_widget { height:400px; margin: 10px; border-radius:12px; overflow:hidden; border:1px solid #1f2937; }
   
-  /* زر دليل المبتدئين الجديد */
   .main-guide { padding: 0 20px; margin-bottom: 20px; }
   .guide-btn { display: block; background: var(--primary); color: black; text-align: center; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 16px; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); }
 
+  /* تنسيق الأقسام التعليمية الجديد */
   .edu-section { padding: 20px; }
-  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .edu-card { background: var(--card); padding: 15px 5px; border-radius: 12px; text-align: center; border: 1px solid #1f2937; text-decoration: none; color: white; font-size: 11px; }
-  .edu-card i { font-size: 25px; display: block; margin-bottom: 5px; }
-  
-  /* قسم المقالات الجديد */
+  .edu-category-title { color:var(--primary); margin-bottom:15px; border-right: 4px solid var(--primary); padding-right: 10px; font-size: 18px; }
+  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+  .edu-card { background: var(--card); padding: 20px 10px; border-radius: 15px; text-align: center; border: 1px solid #1f2937; text-decoration: none; color: white; transition: 0.3s; }
+  .edu-card:active { transform: scale(0.95); background: #1c2533; }
+  .edu-card i { font-size: 30px; display: block; margin-bottom: 8px; }
+  .edu-card span { display: block; font-weight: bold; font-size: 14px; }
+  .edu-card small { color: var(--text); font-size: 10px; }
+
   .blog-section { padding: 20px; }
   .article-card { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #1f2937; margin-bottom: 15px; }
   .article-card h4 { color: var(--primary); margin: 0 0 10px 0; font-size: 18px; }
@@ -61,11 +64,32 @@
 </div>
 
 <div class="edu-section">
-    <h3 style="color:var(--primary); margin-bottom:15px;">🎓 دروس تعليمية</h3>
+    <h3 class="edu-category-title">🎓 أكاديمية التحليل</h3>
     <div class="edu-grid">
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/candles.html" class="edu-card"><i>🕯️</i>الشمعات</a>
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/p2p-guide.html" class="edu-card"><i>💳</i>شراء USDT</a>
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/risk-management.html" class="edu-card"><i>🛡️</i>المخاطر</a>
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/candles.html" class="edu-card">
+            <i>🕯️</i>
+            <span>أنواع الشموع</span>
+            <small>فهم لغة الشارت</small>
+        </a>
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/technical-analysis.html" class="edu-card">
+            <i>📈</i>
+            <span>التحليل الفني</span>
+            <small>رسم الترندات</small>
+        </a>
+    </div>
+
+    <h3 class="edu-category-title">🛠️ أدوات وخدمات</h3>
+    <div class="edu-grid">
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/p2p-guide.html" class="edu-card">
+            <i>💳</i>
+            <span>شراء USDT</span>
+            <small>الدفع بريدي موب</small>
+        </a>
+        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/risk-management.html" class="edu-card">
+            <i>🛡️</i>
+            <span>إدارة المخاطر</span>
+            <small>حافظ على دراهمك</small>
+        </a>
     </div>
 </div>
 
