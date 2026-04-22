@@ -61,8 +61,9 @@ header{
 
 .bar{
     height:100%;
-    width:40%;
+    width:0%;
     background:#22c55e;
+    transition:0.5s;
 }
 
 /* buttons */
@@ -101,12 +102,12 @@ header{
     <div class="grid">
 
         <div class="card">
-            <h2>📚 9</h2>
-            <p>الدروس المتاحة</p>
+            <h2 id="lessonsCount">0</h2>
+            <p>الدروس المكتملة</p>
         </div>
 
         <div class="card">
-            <h2>🎓 Beginner</h2>
+            <h2 id="level">---</h2>
             <p>مستواك الحالي</p>
         </div>
 
@@ -115,10 +116,10 @@ header{
     <!-- PROGRESS -->
     <div class="card" style="margin-top:15px;">
         <h2>📈 تقدمك</h2>
-        <p>40% مكتمل</p>
+        <p id="percentText">0% مكتمل</p>
 
         <div class="progress">
-            <div class="bar"></div>
+            <div class="bar" id="bar"></div>
         </div>
     </div>
 
@@ -142,5 +143,17 @@ header{
 
 </div>
 
-</body>
-</html>
+<script>
+// 🧠 حساب التقدم الحقيقي
+let totalLessons = 3; // بدلو حسب عدد الدروس تاعك
+let done = 0;
+
+if(localStorage.getItem("lesson1")) done++;
+if(localStorage.getItem("lesson2")) done++;
+if(localStorage.getItem("lesson3")) done++;
+
+let percent = Math.round((done / totalLessons) * 100);
+
+// 📊 تحديث الواجهة
+document.getElementById("bar").style.width = percent + "%";
+document.getElementById("percentText").innerText = percent
