@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إشارات التداول</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#0b0f19;
+    color:white;
+}
+
+header{
+    background:#111827;
+    padding:15px;
+    text-align:center;
+}
+
+a{
+    color:#facc15;
+    text-decoration:none;
+}
+
+.container{
+    padding:20px;
+}
+
+.signal{
+    background:#111827;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:12px;
+    border:1px solid #1f2937;
+}
+
+.signal h2{
+    margin:0;
+}
+
+.buy{
+    border-left:5px solid #22c55e;
+}
+
+.sell{
+    border-left:5px solid #ef4444;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:8px;
+    padding:5px 10px;
+    border-radius:6px;
+    background:#1f2937;
+    color:#9ca3af;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    📡 إشارات التداول | <a href="index.html">رجوع</a>
+</header>
+
+<div class="container">
+
+    <div class="signal buy">
+        <h2>🟢 BUY - EUR/USD</h2>
+        <div class="badge">نسبة النجاح: 75%</div>
+        <div class="badge">الوقت: الآن</div>
+    </div>
+
+    <div class="signal sell">
+        <h2>🔴 SELL - BTC/USD</h2>
+        <div class="badge">نسبة النجاح: 68%</div>
+        <div class="badge">الوقت: الآن</div>
+    </div>
+
+    <div class="signal buy">
+        <h2>🟢 BUY - GOLD</h2>
+        <div class="badge">نسبة النجاح: 80%</div>
+        <div class="badge">الوقت: الآن</div>
+    </div>
+
+</div>
+
+</body>
+</html>
