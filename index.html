@@ -2,155 +2,157 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Amine Trading Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenix Trading</title>
+
 <script src="https://s3.tradingview.com/tv.js"></script>
+
 <style>
-  :root{ --primary:#facc15; --bg:#0b0f19; --card:#111827; --text:#9ca3af; --green:#22c55e; --red:#ef4444; }
-  body{ margin:0; font-family: 'Segoe UI', sans-serif; background:var(--bg); color:white; }
-  .header{ display:flex; justify-content:space-between; align-items: center; padding:15px 20px; background:var(--card); border-bottom: 1px solid #1f2937; position:sticky; top:0; z-index:1000; }
-  .ticker{ display:flex; gap:10px; padding:15px; overflow-x:auto; scrollbar-width: none; }
-  .coin{ background:var(--card); padding:12px; border-radius:12px; min-width:130px; border: 1px solid #1f2937; text-align:center; }
-  .coin span { color: var(--green); font-weight: bold; display:block; margin-top:5px; }
-  #tradingview_widget { height:400px; margin: 10px; border-radius:12px; overflow:hidden; border:1px solid #1f2937; }
-  
-  .main-guide { padding: 0 20px; margin-bottom: 20px; }
-  .guide-btn { display: block; background: var(--primary); color: black; text-align: center; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 16px; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); }
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#0b0f19;
+    color:white;
+}
 
-  /* تنسيق الأقسام التعليمية الجديد */
-  .edu-section { padding: 20px; }
-  .edu-category-title { color:var(--primary); margin-bottom:15px; border-right: 4px solid var(--primary); padding-right: 10px; font-size: 18px; }
-  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-  .edu-card { background: var(--card); padding: 20px 10px; border-radius: 15px; text-align: center; border: 1px solid #1f2937; text-decoration: none; color: white; transition: 0.3s; }
-  .edu-card:active { transform: scale(0.95); background: #1c2533; }
-  .edu-card i { font-size: 30px; display: block; margin-bottom: 8px; }
-  .edu-card span { display: block; font-weight: bold; font-size: 14px; }
-  .edu-card small { color: var(--text); font-size: 10px; }
+/* NAV */
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:15px;
+    background:#111827;
+    position:sticky;
+    top:0;
+}
 
-  .blog-section { padding: 20px; }
-  .article-card { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #1f2937; margin-bottom: 15px; }
-  .article-card h4 { color: var(--primary); margin: 0 0 10px 0; font-size: 18px; }
-  .article-card p { color: var(--text); font-size: 13px; margin-bottom: 15px; }
-  .read-more { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 14px; }
+nav a{
+    color:white;
+    margin:0 10px;
+    text-decoration:none;
+}
 
-  .ad{ padding:20px; }
-  .ad a{ display:block; text-align:center; padding:25px; border-radius:20px; background: linear-gradient(135deg, #1e2329 0%, #0b0f19 100%); border:2px solid var(--primary); text-decoration:none; color:white; }
-  .contact{ padding:20px; }
-  .box{ background:var(--card); padding:15px; border-radius:15px; margin-bottom:15px; border: 1px solid #1f2937; text-align:center; }
-  .btn{ display:inline-block; padding:12px; border-radius:10px; font-weight:bold; text-decoration:none; width: 85%; color:white; }
-  .fb{ background:#1877f2; }
-  .wa{ background:#25d366; }
-  .float-wa{ position:fixed; bottom:20px; left:20px; background:#25d366; padding:12px 20px; border-radius:50px; color:white; text-decoration:none; font-weight: bold; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-  footer{ text-align:center; padding:30px; font-size:11px; color:var(--text); background: #05070a; }
+nav a:hover{
+    color:#facc15;
+}
+
+/* SECTION */
+.section{
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    background:#111827;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
+    border:1px solid #1f2937;
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    padding:10px 15px;
+    background:#facc15;
+    color:black;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* SIGNAL */
+.signal{
+    background:#111827;
+    padding:12px;
+    border-radius:10px;
+    margin:8px 0;
+}
+
+.buy{border-left:5px solid #22c55e;}
+.sell{border-left:5px solid #ef4444;}
+
+/* CHART */
+#chart{
+    height:380px;
+    margin:10px;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    font-size:12px;
+    color:#9ca3af;
+}
 </style>
 </head>
+
 <body>
 
-<div class="header">
-  <div style="color:var(--primary); font-size: 18px; font-weight: bold;">Amine Trading 🚀</div>
-  <div style="color:var(--green); font-size: 12px;">● مباشر مباشر</div>
-</div>
-
-<div class="ticker">
-  <div class="coin">BTC <span id="btc_p">...</span></div>
-  <div class="coin">ETH <span id="eth_p">...</span></div>
-  <div class="coin">BNB <span id="bnb_p">...</span></div>
-</div>
-
-<div id="tradingview_widget"></div>
-
-<div class="main-guide">
-    <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/start-trading.html" class="guide-btn">🔥 دليل المبتدئين: ابدأ التداول من الصفر هنا</a>
-</div>
-
-<div class="edu-section">
-    <h3 class="edu-category-title">🎓 أكاديمية التحليل</h3>
-    <div class="edu-grid">
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/candles.html" class="edu-card">
-            <i>🕯️</i>
-            <span>أنواع الشموع</span>
-            <small>فهم لغة الشارت</small>
-        </a>
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/technical-analysis.html" class="edu-card">
-            <i>📈</i>
-            <span>التحليل الفني</span>
-            <small>رسم الترندات</small>
-        </a>
+<!-- NAV -->
+<nav>
+    <div style="color:#facc15;font-weight:bold;">Zenix 🚀</div>
+    <div>
+        <a href="index.html">الرئيسية</a>
+        <a href="blog.html">المقالات</a>
+        <a href="signals.html">الإشارات</a>
+        <a href="start-trading.html">تعلم</a>
     </div>
+</nav>
 
-    <h3 class="edu-category-title">🛠️ أدوات وخدمات</h3>
-    <div class="edu-grid">
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/p2p-guide.html" class="edu-card">
-            <i>💳</i>
-            <span>شراء USDT</span>
-            <small>الدفع بريدي موب</small>
-        </a>
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/risk-management.html" class="edu-card">
-            <i>🛡️</i>
-            <span>إدارة المخاطر</span>
-            <small>حافظ على دراهمك</small>
-        </a>
+<!-- CHART -->
+<div id="chart"></div>
+
+<!-- WELCOME -->
+<div class="section">
+    <div class="card">
+        <h2>🔥 مرحبا بك في Zenix Trading</h2>
+        <p>منصة تعليم التداول للمبتدئين</p>
+        <a class="btn" href="start-trading.html">ابدأ التعلم</a>
     </div>
 </div>
 
-<div class="blog-section">
-    <h3 style="color:var(--primary); margin-bottom:15px;">📚 مقالات تهمك</h3>
-    <div class="article-card">
-        <h4>كيف تبدأ التداول في الجزائر 🇩🇿؟</h4>
-        <p>دليلك الشامل لتعلم كيفية الشراء بالدينار الجزائري عبر BaridiMob والبدء في منصة Binance بأمان..</p>
-        <a href="https://allghalbanajzayrytamer-art.github.io/trading-site/start-trading.html" class="read-more">إقرأ المقال كاملاً ←</a>
+<!-- ARTICLES -->
+<div class="section">
+    <h3 style="color:#facc15">📚 مقالات</h3>
+
+    <div class="card">
+        <h3>أساسيات التداول</h3>
+        <p>تعلم أول خطوات الدخول للسوق...</p>
+        <a class="btn" href="blog.html">اقرأ</a>
     </div>
 </div>
 
-<div class="ad">
-  <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00Q3B8E0CE" target="_blank">
-    <h3 style="color:var(--primary); margin:0;">🚀 ابدأ في Binance</h3>
-    <p style="color: #9ca3af; font-size: 12px;">سجل الآن واحصل على بونص خاص</p>
-    <div style="background:var(--primary); color:black; padding:8px 15px; border-radius:8px; display:inline-block; font-weight:bold; margin-top:10px;">سجل مجاناً</div>
-  </a>
+<!-- SIGNALS -->
+<div class="section">
+    <h3 style="color:#facc15">📡 إشارات</h3>
+
+    <div class="signal buy">🟢 BUY - EUR/USD</div>
+    <div class="signal sell">🔴 SELL - BTC/USD</div>
 </div>
 
-<div class="contact">
-  <div class="box">
-    <a class="btn fb" href="https://www.facebook.com/share/1Dok9tsche/" target="_blank">صفحة الفيسبوك</a>
-  </div>
-  <div class="box">
-    <a class="btn wa" href="https://wa.me/213663190202" target="_blank">راسلني واتساب</a>
-  </div>
+<!-- CONTACT -->
+<div class="section">
+    <div class="card">
+        <h3>📞 تواصل</h3>
+        <a class="btn" href="https://wa.me/213663190202">واتساب</a>
+    </div>
 </div>
 
-<a class="float-wa" href="https://wa.me/213663190202">💬 مباشر</a>
-
-<footer>© 2026 Amine Trading | منصة تعليمية للمتداول الجزائري</footer>
+<footer>
+© 2026 Zenix Trading
+</footer>
 
 <script>
 new TradingView.widget({
-  "width": "100%",
-  "height": 400,
-  "symbol": "BINANCE:BTCUSDT",
-  "interval": "1",
-  "timezone": "Africa/Algiers",
-  "theme": "dark",
-  "style": "1",
-  "locale": "ar",
-  "container_id": "tradingview_widget",
-  "allow_symbol_change": true
+    width:"100%",
+    height:380,
+    symbol:"BINANCE:BTCUSDT",
+    theme:"dark",
+    container_id:"chart"
 });
-
-async function updatePrices(){
-  try {
-    const r = await fetch("https://api.binance.com/api/v3/ticker/price?symbols=[%22BTCUSDT%22,%22ETHUSDT%22,%22BNBUSDT%22]");
-    const d = await r.json();
-    const prices = {};
-    d.forEach(item => { prices[item.symbol] = item.price; });
-
-    document.getElementById("btc_p").innerText = "$" + parseFloat(prices.BTCUSDT).toLocaleString();
-    document.getElementById("eth_p").innerText = "$" + parseFloat(prices.ETHUSDT).toLocaleString();
-    document.getElementById("bnb_p").innerText = "$" + parseFloat(prices.BNBUSDT).toLocaleString();
-  } catch(e) { console.log("Error"); }
-}
-setInterval(updatePrices, 5000);
-updatePrices();
 </script>
 
 </body>
